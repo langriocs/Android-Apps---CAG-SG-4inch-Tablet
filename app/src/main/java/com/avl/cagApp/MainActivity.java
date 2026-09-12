@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final String ipAddress = "192.168.1.10";
-//        final String ipAddress = MyLibUtil.getIPAddress(true);
+//        final String ipAddress = "192.168.1.10";
+        final String ipAddress = MyLibUtil.getIPAddress(true);
         viewModel.fetchControlDeviceByIpAddress(ipAddress);
 
     }

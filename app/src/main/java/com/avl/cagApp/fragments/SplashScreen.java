@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class SplashScreen extends Fragment {
 
     private TextView tvRoomName;
     private MaterialButton btnPressStart;
+
+    private boolean isFourPanel = false;
 
     public static SplashScreen newInstance() {
         return new SplashScreen();
@@ -39,12 +42,17 @@ public class SplashScreen extends Fragment {
         tvRoomName = view.findViewById(R.id.room_name_tv);
 
         btnPressStart = view.findViewById(R.id.btn_press_start);
+
+        if (btnPressStart == null) {
+            return;
+        }
+
         btnPressStart.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_splashScreen_to_controlScreen);
+            proceedToNextScreen(v);
         });
 
         view.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_splashScreen_to_controlScreen);
+            proceedToNextScreen(v);
         });
 
         ShareViewModel shareViewModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
@@ -54,6 +62,15 @@ public class SplashScreen extends Fragment {
             }
         });
 
+        isFourPanel = shareViewModel.isFourInchPanel();
+    }
+
+    private void proceedToNextScreen(View v) {
+        if (isFourPanel) {
+            Navigation.findNavController(v).navigate(R.id.action_splashScreen_to_controlScreen);
+        } else {
+            Navigation.findNavController(v).navigate(R.id.action_splashScreen1_to_controlScreen1);
+        }
     }
 
 }

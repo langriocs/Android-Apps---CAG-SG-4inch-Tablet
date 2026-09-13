@@ -1,6 +1,7 @@
 package com.avl.cagApp;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,10 +48,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        final String ipAddress = "192.168.1.10";
-        final String ipAddress = MyLibUtil.getIPAddress(true);
+        viewModel.setIspFourInchPanel(isFourInchPanel());
+
+        final String ipAddress = "192.168.1.10";
+//        final String ipAddress = MyLibUtil.getIPAddress(true);
         viewModel.fetchControlDeviceByIpAddress(ipAddress);
 
+    }
+
+    private boolean isFourInchPanel() {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+
+        return dm.widthPixels == 480 && dm.heightPixels == 480;
     }
 
     private void showAlert() {

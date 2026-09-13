@@ -3,9 +3,7 @@ package com.avl.cagApp.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.avl.cagApp.libs.MyLibUtil;
-
-public class SplahScreenViewModel extends ViewModel {
+public class SplashScreenViewModel extends ViewModel {
 
     private MutableLiveData<String> imeiId;
 

@@ -21,6 +21,7 @@ public class ShareViewModel extends AndroidViewModel {
     private final MutableLiveData<String> ipAddressQuery = new MutableLiveData<>();
     private LiveData<ControlDevice> controlDevice;
     private LiveData<ControlRoomDevices> controlRoomDevices;
+    private boolean isFourInchPanel = false;
 
     public ShareViewModel(@NonNull Application application) {
         super(application);
@@ -54,5 +55,12 @@ public class ShareViewModel extends AndroidViewModel {
 
     public void saveControlRoomDevices(ControlDevice controlDevice, List<RoomDevice> roomDevices) {
         deviceRoomRepo.saveControlRoomDevices(controlDevice, roomDevices);
+    }
+
+    public void setIspFourInchPanel(boolean fourInchPanel) {
+        isFourInchPanel = fourInchPanel;
+    }
+    public boolean isFourInchPanel() {
+        return isFourInchPanel;
     }
 }

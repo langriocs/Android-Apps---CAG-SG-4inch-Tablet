@@ -13,4 +13,6 @@
     <string name="connection_indicator_of_TV">"TV connection indicator "</string>
     <string name="close">Close</string>
     <string name="exit_app">Exit App</string>
+    <string name="front">front</string>
+    <string name="side">side</string>
 </resources>

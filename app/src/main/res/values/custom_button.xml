@@ -4,14 +4,10 @@
         <item name="cornerRadius">10dp</item>
     </style>
 
-    <style name="source_button">
+    <style name="usb_source_button">
         <item name="cornerRadius">10dp</item>
         <item name="backgroundTint">@color/usb_button_tint</item>
         <item name="icon">@drawable/usb_c_src</item>
-        <item name="iconGravity">textEnd</item>
-        <item name="iconPadding">0dp</item>
-        <item name="iconSize">60dp</item>>
-        <item name="iconTint">@null</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
@@ -25,10 +21,6 @@
         <item name="cornerRadius">10dp</item>
         <item name="backgroundTint">@color/usb_button_tint</item>
         <item name="icon">@drawable/wireless_display_src</item>
-        <item name="iconGravity">textEnd</item>
-        <item name="iconPadding">0dp</item>
-        <item name="iconSize">60dp</item>>
-        <item name="iconTint">@null</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
@@ -38,15 +30,76 @@
         <item name="minHeight">0dp</item>
     </style>
 
-    <style name="power_button">
+    <style name="power_off_button">
         <item name="cornerRadius">10dp</item>
-        <item name="iconSize">60dp</item>>
-        <item name="iconTint">@null</item>
+        <item name="icon">@drawable/pwr_off</item>
         <item name="android:insetLeft">0dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetRight">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:padding">0dp</item>
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
+    <style name="power_on_button">
+        <item name="cornerRadius">10dp</item>
+        <item name="icon">@drawable/pwr_on</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
+    <style name="vol_up_button">
+        <item name="cornerRadius">10dp</item>
+        <item name="icon">@drawable/volume_up</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
+    <style name="vol_down_button">
+        <item name="cornerRadius">10dp</item>
+        <item name="icon">@drawable/volume_down</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
+    <style name="poly_source_button">
+        <item name="cornerRadius">10dp</item>
+        <item name="backgroundTint">@color/usb_button_tint</item>
+        <item name="icon">@drawable/poly_src</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="minWidth">0dp</item>
+        <item name="minHeight">0dp</item>
+    </style>
+
+    <style name="hdmi_source_button">
+        <item name="cornerRadius">10dp</item>
+        <item name="backgroundTint">@color/usb_button_tint</item>
+        <item name="icon">@drawable/hdmi</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">5dp</item>
         <item name="minWidth">0dp</item>
         <item name="minHeight">0dp</item>
     </style>
@@ -63,4 +116,6 @@
         <item name="minWidth">0dp</item>
         <item name="minHeight">0dp</item>
     </style>
+
+
 </resources>

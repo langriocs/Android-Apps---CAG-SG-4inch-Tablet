@@ -22,14 +22,14 @@ public class ControlScreen1 extends Fragment {
     private ControlScreen1ViewModel mViewModel;
 
     private TextView tvRoomName;
-    private MaterialButton btn_usb_1;
-    private MaterialButton btn_usb_2;
-    private MaterialButton btn_wifi_1;
-    private MaterialButton btn_wifi_2;
-    private MaterialButton btn_power_off_front;
-    private MaterialButton btn_power_on_front;
-    private MaterialButton btn_power_off_side;
-    private MaterialButton btn_power_on_side;
+    private MaterialButton btnUSB1;
+    private MaterialButton btnUSB2;
+    private MaterialButton btnWIFI1;
+    private MaterialButton btnWIFI2;
+    private MaterialButton btnPowerOffFront;
+    private MaterialButton btnPowerOnFront;
+    private MaterialButton btnPowerOffSide;
+    private MaterialButton btnPowerOnSide;
 
 
     public static ControlScreen1 newInstance() {
@@ -49,58 +49,41 @@ public class ControlScreen1 extends Fragment {
         mViewModel = new ViewModelProvider(this).get(ControlScreen1ViewModel.class);
 
         tvRoomName = view.findViewById(R.id.room_name_tv);
-        btn_usb_1 = view.findViewById(R.id.btn_usb_1);
-        btn_usb_2 = view.findViewById(R.id.btn_usb_2);
-        btn_wifi_1 = view.findViewById(R.id.btn_wifi_1);
-        btn_wifi_2 = view.findViewById(R.id.btn_wifi_2);
-        btn_power_off_front = view.findViewById(R.id.btn_power_off_front);
-        btn_power_on_front = view.findViewById(R.id.btn_power_on_front);
-        btn_power_off_side = view.findViewById(R.id.btn_power_off_side);
-        btn_power_on_side = view.findViewById(R.id.btn_power_on_side);
+        btnUSB1 = view.findViewById(R.id.btn_usb_1);
+        btnUSB2 = view.findViewById(R.id.btn_usb_2);
+        btnWIFI1 = view.findViewById(R.id.btn_wifi_1);
+        btnWIFI2 = view.findViewById(R.id.btn_wifi_2);
+        btnPowerOffFront = view.findViewById(R.id.btn_power_off_front);
+        btnPowerOnFront = view.findViewById(R.id.btn_power_on_front);
+        btnPowerOffSide = view.findViewById(R.id.btn_power_off_side);
+        btnPowerOnSide = view.findViewById(R.id.btn_power_on_side);
 
-        if (tvRoomName == null) {
+        btnUSB1.setOnClickListener(v -> {
 
-        }
-        if (btn_usb_1 != null) {
-            btn_usb_1.setOnClickListener(v -> {
+        });
+        btnUSB2.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_usb_2 != null) {
-            btn_usb_2.setOnClickListener(v -> {
+        });
+        btnWIFI1.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_wifi_1 != null) {
-            btn_wifi_1.setOnClickListener(v -> {
+        });
+        btnWIFI2.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_wifi_2 != null) {
-            btn_wifi_2.setOnClickListener(v -> {
+        });
+        btnPowerOffFront.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_power_off_front != null) {
-            btn_power_off_front.setOnClickListener(v -> {
+        });
+        btnPowerOnFront.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_power_on_front != null) {
-            btn_power_on_front.setOnClickListener(v -> {
+        });
+        btnPowerOffSide.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_power_off_side != null) {
-            btn_power_off_side.setOnClickListener(v -> {
+        });
+        btnPowerOnSide.setOnClickListener(v -> {
 
-            });
-        }
-        if (btn_power_on_side != null) {
-            btn_power_on_side.setOnClickListener(v -> {
+        });
 
-            });
-        }
+
 
     }
 }

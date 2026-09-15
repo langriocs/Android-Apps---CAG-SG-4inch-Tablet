@@ -22,6 +22,7 @@ public class ShareViewModel extends AndroidViewModel {
     private LiveData<ControlDevice> controlDevice;
     private LiveData<ControlRoomDevices> controlRoomDevices;
     private boolean isFourInchPanel = false;
+    private String deviceIpAddress;
 
     public ShareViewModel(@NonNull Application application) {
         super(application);
@@ -38,6 +39,7 @@ public class ShareViewModel extends AndroidViewModel {
     }
 
     public void fetchControlDeviceByIpAddress(String ipAddress) {
+        deviceIpAddress = ipAddress;
         ipAddressQuery.setValue(ipAddress);
     }
 
@@ -62,5 +64,8 @@ public class ShareViewModel extends AndroidViewModel {
     }
     public boolean isFourInchPanel() {
         return isFourInchPanel;
+    }
+    public String getDeviceIpAddress() {
+        return deviceIpAddress;
     }
 }

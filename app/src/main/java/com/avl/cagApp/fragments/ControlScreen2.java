@@ -1,4 +1,4 @@
-package com.avl.cagApp;
+package com.avl.cagApp.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.avl.cagApp.R;
+import com.avl.cagApp.viewmodel.ControlScreen2ViewModel;
 
 public class ControlScreen2 extends Fragment {
 
@@ -26,11 +29,5 @@ public class ControlScreen2 extends Fragment {
         return inflater.inflate(R.layout.fragment_control_screen2, container, false);
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ControlScreen2ViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

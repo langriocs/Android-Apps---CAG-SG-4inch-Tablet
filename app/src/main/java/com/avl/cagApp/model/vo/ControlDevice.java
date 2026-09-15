@@ -18,6 +18,9 @@ public class ControlDevice {
     @ColumnInfo(name = "room_name")
     private String roomName;
 
+    @ColumnInfo(name = "device_ui")
+    private Integer deviceUI;
+
     public int getId() {
         return id;
     }
@@ -43,5 +46,11 @@ public class ControlDevice {
         this.roomName = roomName;
     }
 
+    public Integer getDeviceUI() {
+        return deviceUI;
+    }
 
+    public void setDeviceUI(Integer deviceUI) {
+        this.deviceUI = deviceUI;
+    }
 }

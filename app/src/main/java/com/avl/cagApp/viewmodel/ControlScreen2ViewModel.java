@@ -1,4 +1,4 @@
-package com.avl.cagApp;
+package com.avl.cagApp.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

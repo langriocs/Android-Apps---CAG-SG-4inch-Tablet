@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_splashScreen1_to_controlScreen1"
             app:destination="@id/controlScreen1" />
+        <action
+            android:id="@+id/action_splashScreen1_to_controlScreen2"
+            app:destination="@id/controlScreen2" />
+        <action
+            android:id="@+id/action_splashScreen1_to_controlScreen3"
+            app:destination="@id/controlScreen3" />
     </fragment>
     <fragment
         android:id="@+id/controlScreen1"
@@ -26,6 +32,24 @@
         tools:layout="@layout/fragment_control_screen1" >
         <action
             android:id="@+id/action_controlScreen1_to_splashScreen1"
+            app:destination="@id/splashScreen1" />
+    </fragment>
+    <fragment
+        android:id="@+id/controlScreen2"
+        android:name="com.avl.cagApp.fragments.ControlScreen2"
+        android:label="fragment_control_screen2"
+        tools:layout="@layout/fragment_control_screen2" >
+        <action
+            android:id="@+id/action_controlScreen2_to_splashScreen1"
+            app:destination="@id/splashScreen1" />
+    </fragment>
+    <fragment
+        android:id="@+id/controlScreen3"
+        android:name="com.avl.cagApp.fragments.ControlScreen3"
+        android:label="fragment_control_screen3"
+        tools:layout="@layout/fragment_control_screen3" >
+        <action
+            android:id="@+id/action_controlScreen3_to_splashScreen1"
             app:destination="@id/splashScreen1" />
     </fragment>
 </navigation>

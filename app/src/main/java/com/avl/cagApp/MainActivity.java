@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel.setIspFourInchPanel(isFourInchPanel());
 
-        final String ipAddress = "192.168.1.10";
+        final String ipAddress = "192.168.1.90";
 //        final String ipAddress = MyLibUtil.getIPAddress(true);
         viewModel.fetchControlDeviceByIpAddress(ipAddress);
 
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isFourInchPanel() {
         DisplayMetrics dm = getResources().getDisplayMetrics();
-
         return dm.widthPixels == 480 && dm.heightPixels == 480;
     }
 

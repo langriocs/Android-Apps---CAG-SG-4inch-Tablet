@@ -6,4 +6,9 @@
     <color name="led_connected">#4CAF50</color> <!-- green -->
     <color name="led_disconnected">#F44336</color>
     <color name="light_yellow">#FFFFE0</color>
+    <color name="header_backcolor">#0d2239</color>
+    <color name="main_backcolor">#09192e</color>
+    <color name="panel_display_backcolor">#233246</color>
+    <color name="button_source_color">#233246</color>
+    <color name="button_border_source_color">#405367</color>
 </resources>

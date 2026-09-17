@@ -23,7 +23,7 @@ public class SplashScreen extends Fragment {
     private TextView tvRoomName;
     private MaterialButton btnPressStart;
     private boolean isFourPanel = false;
-    private int deviceUI;
+    private int controlDeviceUI;
 
     public static SplashScreen newInstance() {
         return new SplashScreen();
@@ -56,13 +56,20 @@ public class SplashScreen extends Fragment {
         });
 
         ShareViewModel shareViewModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
-        shareViewModel.getControlDevice().observe(getViewLifecycleOwner(), deviceInfo -> {
-            if (deviceInfo != null) {
-                tvRoomName.setText(deviceInfo.getRoomName());
-                deviceUI = deviceInfo.getDeviceUI();
+        shareViewModel.getControlRoomDevices().observe(getViewLifecycleOwner(), controlRoomDevice -> {
+            if (controlRoomDevice != null) {
+                shareViewModel.setSelectedControlDevice(controlRoomDevice.controlDevice);
+                shareViewModel.setSelectedRoomDevices(controlRoomDevice.roomDevices);
+                tvRoomName.setText(controlRoomDevice.controlDevice.getRoomName());
+                controlDeviceUI = controlRoomDevice.controlDevice.getDeviceUI();
+            } else {
+                showAlert();
             }
         });
 
+        final String ipAddress = "192.168.1.30";
+//        final String ipAddress = MyLibUtil.getIPAddress(true);
+        shareViewModel.fetchControlDeviceByIpAddress(ipAddress);
         isFourPanel = shareViewModel.isFourInchPanel();
     }
 
@@ -70,17 +77,24 @@ public class SplashScreen extends Fragment {
         if (isFourPanel) {
             Navigation.findNavController(v).navigate(R.id.action_splashScreen_to_controlScreen);
         } else {
-            if (deviceUI == AppConstant.UI_1) {
+            if (controlDeviceUI == AppConstant.UI_1) {
                 Navigation.findNavController(v).navigate(R.id.action_splashScreen1_to_controlScreen1);
             }
-            if (deviceUI == AppConstant.UI_2) {
+            if (controlDeviceUI == AppConstant.UI_2) {
                 Navigation.findNavController(v).navigate(R.id.action_splashScreen1_to_controlScreen2);
             }
-            if (deviceUI == AppConstant.UI_3) {
+            if (controlDeviceUI == AppConstant.UI_3) {
                 Navigation.findNavController(v).navigate(R.id.action_splashScreen1_to_controlScreen3);
             }
 
         }
+    }
+
+    private void showAlert() {
+        CustomAlertDialog alertScreenDialog = new CustomAlertDialog();
+        alertScreenDialog.setTitle("Changi Airport Group");
+        alertScreenDialog.setMessage("Device IP Address not found! Please contact the admin.");
+        alertScreenDialog.show(getParentFragmentManager(), "alert dialog");
     }
 
 }

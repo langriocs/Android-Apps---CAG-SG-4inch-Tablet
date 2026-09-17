@@ -19,44 +19,23 @@ import java.util.List;
 public class ShareViewModel extends AndroidViewModel {
     private final IDeviceRoomRepository deviceRoomRepo;
     private final MutableLiveData<String> ipAddressQuery = new MutableLiveData<>();
-    private LiveData<ControlDevice> controlDevice;
-    private LiveData<ControlRoomDevices> controlRoomDevices;
+    private final LiveData<ControlRoomDevices> controlRoomDevices;
     private boolean isFourInchPanel = false;
-    private String deviceIpAddress;
+    private List<RoomDevice> selectedRoomDevices;
+    private ControlDevice selectedControlDevice;
 
     public ShareViewModel(@NonNull Application application) {
         super(application);
         deviceRoomRepo = new DeviceRoomRepository(application);
         controlRoomDevices = Transformations.switchMap(ipAddressQuery, deviceRoomRepo::fetchControlDeviceWithRoomDevicesByIpAddress);
-        controlDevice = Transformations.switchMap(ipAddressQuery, deviceRoomRepo::fetchControlDeviceByIpAddress);
     }
 
-    public LiveData<ControlDevice> getControlDevice() {
-        return controlDevice;
-    }
     public LiveData<ControlRoomDevices> getControlRoomDevices() {
         return controlRoomDevices;
     }
 
     public void fetchControlDeviceByIpAddress(String ipAddress) {
-        deviceIpAddress = ipAddress;
         ipAddressQuery.setValue(ipAddress);
-    }
-
-    public void fetchControlDeviceWithRoomDevicesByIpAddress(String ipAddress) {
-        ipAddressQuery.setValue(ipAddress);
-    }
-
-    public void saveControlDevice(ControlDevice controlDevice) {
-        deviceRoomRepo.saveControlDevice(controlDevice);
-    }
-
-    public void saveRoomDevices(List<RoomDevice> roomDevices) {
-        deviceRoomRepo.saveRoomDevices(roomDevices);
-    }
-
-    public void saveControlRoomDevices(ControlDevice controlDevice, List<RoomDevice> roomDevices) {
-        deviceRoomRepo.saveControlRoomDevices(controlDevice, roomDevices);
     }
 
     public void setIspFourInchPanel(boolean fourInchPanel) {
@@ -65,7 +44,18 @@ public class ShareViewModel extends AndroidViewModel {
     public boolean isFourInchPanel() {
         return isFourInchPanel;
     }
-    public String getDeviceIpAddress() {
-        return deviceIpAddress;
+
+    public void setSelectedRoomDevices(List<RoomDevice> roomDevices) {
+        this.selectedRoomDevices = roomDevices;
+    }
+    public List<RoomDevice> getSelectedRoomDevices() {
+        return selectedRoomDevices;
+    }
+
+    public ControlDevice getSelectedControlDevice() {
+        return selectedControlDevice;
+    }
+    public void setSelectedControlDevice(ControlDevice selectedControlDevice) {
+        this.selectedControlDevice = selectedControlDevice;
     }
 }

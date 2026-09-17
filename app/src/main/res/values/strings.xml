@@ -15,4 +15,8 @@
     <string name="exit_app">Exit App</string>
     <string name="front">front</string>
     <string name="side">side</string>
+    <string name="select_source">Select source</string>
+    <string name="usb_c">USB-C</string>
+    <string name="usb_c_source_button">USB-C Source button</string>
+    <string name="wireless_share_source_button">Wireless Share Source button</string>
 </resources>

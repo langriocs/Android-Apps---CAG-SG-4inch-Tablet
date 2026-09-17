@@ -1,7 +1,6 @@
 package com.avl.cagApp.fragments;
 
 import android.graphics.PorterDuff;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,7 +42,7 @@ public class ControlScreen extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_control_screen, container, false);
+        return inflater.inflate(R.layout.fragment_control_screen1, container, false);
     }
 
     @Override
@@ -61,7 +60,7 @@ public class ControlScreen extends Fragment {
         ImageView switchLedIcon = view.findViewById(R.id.switchLedIcon);
         ImageView tvLedIcon = view.findViewById(R.id.tvLedIcon);
         TextView tvLedSwitchDesc = view.findViewById(R.id.switchLedIcon_tv);
-        TextView tvLedTVDesc = view.findViewById(R.id.tvLed_desc_tv);
+        TextView tvLedTVDesc = view.findViewById(R.id.tvLedDesc1_tv);
 
         btnUSB1.setOnClickListener(v -> {
             if (!isSwitcherConnected) {

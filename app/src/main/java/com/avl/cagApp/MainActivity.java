@@ -42,17 +42,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ShareViewModel viewModel = new ViewModelProvider(this).get(ShareViewModel.class);
-        viewModel.getControlRoomDevices().observe(this, data -> {
-            if (data == null) {
-                showAlert();
-            }
-        });
-
         viewModel.setIspFourInchPanel(isFourInchPanel());
 
-        final String ipAddress = "192.168.1.90";
-//        final String ipAddress = MyLibUtil.getIPAddress(true);
-        viewModel.fetchControlDeviceByIpAddress(ipAddress);
+
 
     }
 
@@ -61,10 +53,5 @@ public class MainActivity extends AppCompatActivity {
         return dm.widthPixels == 480 && dm.heightPixels == 480;
     }
 
-    private void showAlert() {
-        CustomAlertDialog alertScreenDialog = new CustomAlertDialog();
-        alertScreenDialog.setTitle("Changi Airport Group");
-        alertScreenDialog.setMessage("Device IP Address not found! Please contact the admin.");
-        alertScreenDialog.show(getSupportFragmentManager(), "alert dialog");
-    }
+
 }

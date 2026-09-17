@@ -68,7 +68,7 @@ public class ControlScreenViewModel extends ViewModel {
         tvClient.connect(ip, port);
     }
 
-    public void sendToSwitcher(String message) {
+     public void sendToSwitcher(String message) {
         switcherClient.sendMessage(message);
     }
 

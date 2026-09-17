@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Door Frame / Wall Part -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M16,2h3c1.1,0 2,0.9 2,2v16c0,1.1 -0.9,2 -2,2h-3v-2h3V4h-3V2z" />
+
+    <!-- Open Door -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M13,4H5C3.9,4 3,4.9 3,6v12c0,1.1 0.9,2 2,2h8c0.55,0 1,-0.45 1,-1V5C14,4.45 13.55,4 13,4z" />
+
+    <!-- Door Handle / Knob -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M10,12m-1,0a1,1 0 1,1 2,0a1,1 0 1,1 -2,0" />
+</vector>

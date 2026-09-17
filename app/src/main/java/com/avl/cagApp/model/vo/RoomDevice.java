@@ -38,6 +38,7 @@ public class RoomDevice {
     @ColumnInfo(name = "device_port")
     private int devicePort;
 
+
     public int getId() {
         return id;
     }

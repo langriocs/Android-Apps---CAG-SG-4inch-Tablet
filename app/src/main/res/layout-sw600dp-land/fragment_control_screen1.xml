@@ -284,14 +284,14 @@
         android:paddingEnd="16dp" >
 
         <ImageView
-            android:id="@+id/switchLedIcon"
+            android:id="@+id/switchFrontLedIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="@string/led_indicator"
             android:src="@drawable/ic_led" />
 
         <TextView
-            android:id="@+id/switchLedIcon_tv"
+            android:id="@+id/switchFrontLedDesc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -305,14 +305,14 @@
             android:layout_height="match_parent" />
 
         <ImageView
-            android:id="@+id/tvLedIcon"
+            android:id="@+id/tvFrontLedIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="@string/led_indicator"
             android:src="@drawable/ic_led" />
 
         <TextView
-            android:id="@+id/tvLed_desc_tv"
+            android:id="@+id/tvFrontLedDesc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -333,7 +333,7 @@
             android:src="@drawable/ic_led" />
 
         <TextView
-            android:id="@+id/switchSideLedIcon_tv"
+            android:id="@+id/switchSideLedDesc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -347,14 +347,14 @@
             android:layout_height="match_parent" />
 
         <ImageView
-            android:id="@+id/tvLedSideIcon"
+            android:id="@+id/tvSideLedIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="@string/led_indicator"
             android:src="@drawable/ic_led" />
 
         <TextView
-            android:id="@+id/tvLedSide_desc_tv"
+            android:id="@+id/tvSideLedDesc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -411,7 +411,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/please_wait"
             android:textColor="@android:color/black"
-            android:textSize="28sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txtWarmupCountdown"
             app:layout_constraintEnd_toEndOf="parent"
@@ -425,7 +425,7 @@
             android:layout_marginTop="8dp"
             android:text="30s"
             android:textColor="@android:color/darker_gray"
-            android:textSize="20sp"
+            android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

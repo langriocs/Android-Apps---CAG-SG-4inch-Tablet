@@ -20,4 +20,5 @@
     <string name="usb_c_source_button">USB-C Source button</string>
     <string name="wireless_share_source_button">Wireless Share Source button</string>
     <string name="volume_up_icon">Volume Up icon</string>
+    <string name="turn_display_off">Turn display off</string>
 </resources>

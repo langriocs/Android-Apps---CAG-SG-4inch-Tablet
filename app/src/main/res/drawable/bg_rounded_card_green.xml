@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <!-- 10% opacity red (1A in hex) overlaying the dark background -->
-    <solid android:color="#40BA2929" />
+    <!-- 20% opacity green (1A in hex) overlaying the dark background -->
+    <solid android:color="#4A4CAF50" />
     <corners android:radius="12dp" />
     <stroke
         android:width="2dp"
-        android:color="#BA2929" />
+        android:color="#4CAF50" />
 </shape>

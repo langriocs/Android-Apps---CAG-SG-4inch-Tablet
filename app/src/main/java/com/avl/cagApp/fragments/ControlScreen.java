@@ -54,78 +54,30 @@ public class ControlScreen extends Fragment {
         ConstraintLayout btnSourceUsbC = view.findViewById(R.id.btnSourceUsbC);
         ConstraintLayout btnSourceWireless = view.findViewById(R.id.btnSourceWireless);
         ConstraintLayout btnMute = view.findViewById(R.id.btnMute);
-//        MaterialButton btnPowerOff = view.findViewById(R.id.btn_power_off);
-//        MaterialButton btnPowerOn = view.findViewById(R.id.btn_power_on);
-//        MaterialButton btnVolumeUp = view.findViewById(R.id.btn_vol_up);
-//        MaterialButton btnVolumeDown = view.findViewById(R.id.btn_vol_down);
-//        MaterialButton btnExit = view.findViewById(R.id.btn_exit);
-//        ImageView switchLedIcon = view.findViewById(R.id.switchLedIcon);
-//        ImageView tvLedIcon = view.findViewById(R.id.tvLedIcon);
-//        TextView tvLedSwitchDesc = view.findViewById(R.id.switchLedIcon_tv);
-//        TextView tvLedTVDesc = view.findViewById(R.id.tvLedDesc1_tv);
+        MaterialButton btnPower = view.findViewById(R.id.btnPower);
 
         btnSourceUsbC.setOnClickListener(v -> {
-            if (!isSwitcherConnected) {
-                return;
-            }
+//            if (!isSwitcherConnected) {
+//                return;
+//            }
             mViewModel.sendToSwitcher("s input source 1");
+            Boolean current = mViewModel.getIsUsbCSelected().getValue();
+            mViewModel.setUsbCSelected(current == null || !current);
         });
 
         btnSourceWireless.setOnClickListener(v -> {
-            if (!isSwitcherConnected) {
-                return;
-            }
+//            if (!isSwitcherConnected) {
+//                return;
+//            }
             mViewModel.sendToSwitcher("s input source 4");
+            Boolean current = mViewModel.getIsWirelessSelected().getValue();
+            mViewModel.setWirelessSelected(current == null || !current);
         } );
 
-//        btnPowerOff.setOnClickListener(v -> {
-//            if (!isTVConnected) {
-//                return;
-//            }
-//
-//            mViewModel.sendToTV("ka 00 00\r");
-//        });
-//
-//        btnPowerOn.setOnClickListener(v -> {
-//            if (!isTVConnected) {
-//                return;
-//            }
-//
-//            mViewModel.sendToTV("ka 00 01\r");
-//        });
-//
-//        btnVolumeUp.setOnClickListener(v -> {
-//            if (!isTVConnected) {
-//                return;
-//            }
-//            if (volNum == 64) {
-//                return;
-//            }
-//
-//            volNum = volNum + 1;
-//            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-//            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
-//
-//        });
-//
-//        btnVolumeDown.setOnClickListener(v -> {
-//            if (!isTVConnected) {
-//                return;
-//            }
-//            if (volNum == 0) {
-//                return;
-//            }
-//
-//            volNum = volNum - 1;
-//            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-//            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
-//
-//        });
-//
-//        btnExit.setOnClickListener(v -> {
-//            performShutdown();
-//            Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
-//        });
+        btnPower.setOnClickListener(v -> {
+            Boolean currentState = mViewModel.getIsPowerOn().getValue();
+            mViewModel.setPowerOn(currentState == null || !currentState);
+        });
 
         // Warmup UI components
         View layoutWarmup = view.findViewById(R.id.layoutWarmup);
@@ -144,6 +96,21 @@ public class ControlScreen extends Fragment {
                     });
                 }
             }
+        });
+
+        mViewModel.getIsPowerOn().observe(getViewLifecycleOwner(), isPowerOn -> {
+            int color = isPowerOn ? 0xFF4CAF50 : 0xFFFF0000; // Green : Red
+            btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
+            btnPower.setBackgroundResource(isPowerOn ? R.drawable.bg_rounded_card_green : R.drawable.bg_rounded_card_red);
+            btnPower.setText(isPowerOn ? "Turn display on" : "Turn display off");
+        });
+
+        mViewModel.getIsUsbCSelected().observe(getViewLifecycleOwner(), isSelected -> {
+            btnSourceUsbC.setBackgroundResource(isSelected ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
+        });
+
+        mViewModel.getIsWirelessSelected().observe(getViewLifecycleOwner(), isSelected -> {
+            btnSourceWireless.setBackgroundResource(isSelected ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
         });
 
         mViewModel.getIsSystemInitialized().observe(getViewLifecycleOwner(), isInitialized -> {

@@ -13,6 +13,9 @@ public class ControlScreenViewModel extends ViewModel {
     private final MutableLiveData<Boolean> isSystemInitialized = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isSwitcherConnected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isTVConnected = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> isPowerOn = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> isUsbCSelected = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> isWirelessSelected = new MutableLiveData<>(false);
 
     private TCPClient switcherClient;
     private TCPClient tvClient;
@@ -59,6 +62,30 @@ public class ControlScreenViewModel extends ViewModel {
 
     public LiveData<Boolean> getIsTVConnected() {
         return isTVConnected;
+    }
+
+    public LiveData<Boolean> getIsPowerOn() {
+        return isPowerOn;
+    }
+
+    public void setPowerOn(boolean powerOn) {
+        isPowerOn.postValue(powerOn);
+    }
+
+    public LiveData<Boolean> getIsUsbCSelected() {
+        return isUsbCSelected;
+    }
+
+    public void setUsbCSelected(boolean selected) {
+        isUsbCSelected.postValue(selected);
+    }
+
+    public LiveData<Boolean> getIsWirelessSelected() {
+        return isWirelessSelected;
+    }
+
+    public void setWirelessSelected(boolean selected) {
+        isWirelessSelected.postValue(selected);
     }
 
     public void connectSwitcher(String ip, int port) {

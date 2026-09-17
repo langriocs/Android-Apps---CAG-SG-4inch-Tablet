@@ -149,8 +149,8 @@
                 <ImageView
                     android:id="@+id/imgUsbCIcon"
                     android:layout_width="64dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="18dp"
                     android:src="@drawable/ic_usb_c"
                     android:scaleType="fitCenter"
                     android:contentDescription="@string/usb_c_source_button"
@@ -166,7 +166,6 @@
                     android:text="@string/usb_c"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imgUsbCIcon" />
@@ -201,7 +200,6 @@
                     android:text="Wireless Share"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgWirelessIcon" />
@@ -209,8 +207,114 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Volume Section label -->
+        <TextView
+            android:id="@+id/lblVolume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Volume"
+            android:textColor="#E0E0E0"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/source_select_panel" />
 
+        <!-- Volume Controls Box -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/volume_controls_panel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblVolume">
+
+            <ImageView
+                android:id="@+id/imgVolDown"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_volume_down"
+                android:contentDescription="Volume Down icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/volume_controls_panel"
+                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"/>
+
+            <SeekBar
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="50"
+                android:thumb="@drawable/seekbar_thumb"
+                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"
+                app:layout_constraintEnd_toStartOf="@+id/imgVolUp"
+                app:layout_constraintStart_toEndOf="@+id/imgVolDown"
+                app:layout_constraintTop_toTopOf="@id/volume_controls_panel" />
+            <!--            <SeekBar-->
+<!--                android:id="@+id/seekBarVolume"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="12dp"-->
+<!--                android:layout_marginEnd="12dp"-->
+<!--                android:max="100"-->
+<!--                android:progress="50"-->
+<!--                android:progressDrawable="@drawable/seekbar_progress"-->
+<!--                android:thumb="@drawable/seekbar_thumb"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/imgVolUp"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/imgVolDown"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <ImageView
+                android:id="@+id/imgVolUp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_volume_up"
+                android:contentDescription="@string/volume_up_icon"
+                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"
+                app:layout_constraintEnd_toStartOf="@+id/btnMute"
+                app:layout_constraintTop_toTopOf="@+id/volume_controls_panel" />
+
+            <!-- Mute Button -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnMute"
+                android:layout_width="110dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_rounded_card"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgMuteIcon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_volume_mute"
+                    android:contentDescription="Mute button icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/txtMute"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtMute"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Mute"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imgMuteIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Footer bar status row -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -281,6 +385,53 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Warmup Overlay -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutWarmup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
 
+        <ProgressBar
+            android:id="@+id/warmupProgress"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtWarmupMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/txtWarmupMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/please_wait"
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txtWarmupCountdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/warmupProgress" />
+
+        <TextView
+            android:id="@+id/txtWarmupCountdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="30s"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtWarmupMessage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

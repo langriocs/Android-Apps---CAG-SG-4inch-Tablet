@@ -3,17 +3,17 @@
     <!-- Background track -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
-            <corners android:radius="4dp" />
+            <corners android:radius="1dp" />
             <solid android:color="#25354E" />
-            <size android:height="6dp" />
+            <size android:height="1.5dp" />
         </shape>
     </item>
 
-    <!-- Secondary Progress (Optional, but good for styling) -->
+    <!-- Secondary Progress -->
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
+                <corners android:radius="1dp" />
                 <solid android:color="#25354E" />
             </shape>
         </clip>
@@ -23,8 +23,8 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape android:shape="rectangle">
-                <corners android:radius="4dp" />
-                <solid android:color="#1E75D8" />
+                <corners android:radius="1dp" />
+                <solid android:color="#3d92e5" />
             </shape>
         </clip>
     </item>

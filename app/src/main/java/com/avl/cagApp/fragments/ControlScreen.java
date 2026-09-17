@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -42,88 +43,89 @@ public class ControlScreen extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_control_screen1, container, false);
+        return inflater.inflate(R.layout.fragment_control_screen, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView tvRoomName = view.findViewById(R.id.room_name_tv);
-        MaterialButton btnUSB1 = view.findViewById(R.id.btn_usb_1);
-        MaterialButton btnUSB2 = view.findViewById(R.id.btn_usb_2);
-        MaterialButton btnPowerOff = view.findViewById(R.id.btn_power_off);
-        MaterialButton btnPowerOn = view.findViewById(R.id.btn_power_on);
-        MaterialButton btnVolumeUp = view.findViewById(R.id.btn_vol_up);
-        MaterialButton btnVolumeDown = view.findViewById(R.id.btn_vol_down);
-        MaterialButton btnExit = view.findViewById(R.id.btn_exit);
-        ImageView switchLedIcon = view.findViewById(R.id.switchLedIcon);
-        ImageView tvLedIcon = view.findViewById(R.id.tvLedIcon);
-        TextView tvLedSwitchDesc = view.findViewById(R.id.switchLedIcon_tv);
-        TextView tvLedTVDesc = view.findViewById(R.id.tvLedDesc1_tv);
+        TextView tvRoomName = view.findViewById(R.id.txtRoomName);
+        ConstraintLayout btnSourceUsbC = view.findViewById(R.id.btnSourceUsbC);
+        ConstraintLayout btnSourceWireless = view.findViewById(R.id.btnSourceWireless);
+        ConstraintLayout btnMute = view.findViewById(R.id.btnMute);
+//        MaterialButton btnPowerOff = view.findViewById(R.id.btn_power_off);
+//        MaterialButton btnPowerOn = view.findViewById(R.id.btn_power_on);
+//        MaterialButton btnVolumeUp = view.findViewById(R.id.btn_vol_up);
+//        MaterialButton btnVolumeDown = view.findViewById(R.id.btn_vol_down);
+//        MaterialButton btnExit = view.findViewById(R.id.btn_exit);
+//        ImageView switchLedIcon = view.findViewById(R.id.switchLedIcon);
+//        ImageView tvLedIcon = view.findViewById(R.id.tvLedIcon);
+//        TextView tvLedSwitchDesc = view.findViewById(R.id.switchLedIcon_tv);
+//        TextView tvLedTVDesc = view.findViewById(R.id.tvLedDesc1_tv);
 
-        btnUSB1.setOnClickListener(v -> {
+        btnSourceUsbC.setOnClickListener(v -> {
             if (!isSwitcherConnected) {
                 return;
             }
             mViewModel.sendToSwitcher("s input source 1");
         });
 
-        btnUSB2.setOnClickListener(v -> {
+        btnSourceWireless.setOnClickListener(v -> {
             if (!isSwitcherConnected) {
                 return;
             }
             mViewModel.sendToSwitcher("s input source 4");
         } );
 
-        btnPowerOff.setOnClickListener(v -> {
-            if (!isTVConnected) {
-                return;
-            }
-
-            mViewModel.sendToTV("ka 00 00\r");
-        });
-        
-        btnPowerOn.setOnClickListener(v -> {
-            if (!isTVConnected) {
-                return;
-            }
-
-            mViewModel.sendToTV("ka 00 01\r");
-        });
-        
-        btnVolumeUp.setOnClickListener(v -> {
-            if (!isTVConnected) {
-                return;
-            }
-            if (volNum == 64) {
-                return;
-            }
-
-            volNum = volNum + 1;
-            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
-
-        });
-        
-        btnVolumeDown.setOnClickListener(v -> {
-            if (!isTVConnected) {
-                return;
-            }
-            if (volNum == 0) {
-                return;
-            }
-
-            volNum = volNum - 1;
-            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
-
-        });
-
-        btnExit.setOnClickListener(v -> {
-            performShutdown();
-            Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
-        });
+//        btnPowerOff.setOnClickListener(v -> {
+//            if (!isTVConnected) {
+//                return;
+//            }
+//
+//            mViewModel.sendToTV("ka 00 00\r");
+//        });
+//
+//        btnPowerOn.setOnClickListener(v -> {
+//            if (!isTVConnected) {
+//                return;
+//            }
+//
+//            mViewModel.sendToTV("ka 00 01\r");
+//        });
+//
+//        btnVolumeUp.setOnClickListener(v -> {
+//            if (!isTVConnected) {
+//                return;
+//            }
+//            if (volNum == 64) {
+//                return;
+//            }
+//
+//            volNum = volNum + 1;
+//            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+//            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+//
+//        });
+//
+//        btnVolumeDown.setOnClickListener(v -> {
+//            if (!isTVConnected) {
+//                return;
+//            }
+//            if (volNum == 0) {
+//                return;
+//            }
+//
+//            volNum = volNum - 1;
+//            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+//            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+//
+//        });
+//
+//        btnExit.setOnClickListener(v -> {
+//            performShutdown();
+//            Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
+//        });
 
         // Warmup UI components
         View layoutWarmup = view.findViewById(R.id.layoutWarmup);
@@ -153,19 +155,19 @@ public class ControlScreen extends Fragment {
             }
         });
 
-        mViewModel.getIsSwitcherConnected().observe(getViewLifecycleOwner(), isConnected -> {
-            setLEDConnectionStatus(switchLedIcon, tvLedSwitchDesc, isConnected);
-            String statDesc = "Switch is " + (isConnected ? "online" : "offline");
-            tvLedSwitchDesc.setText(statDesc);
-            isSwitcherConnected = isConnected;
-        });
-
-        mViewModel.getIsTVConnected().observe(getViewLifecycleOwner(), isConnected -> {
-            setLEDConnectionStatus(tvLedIcon, tvLedTVDesc, isConnected);
-            String statDesc = "TV is " + (isConnected ? "online" : "offline");
-            tvLedTVDesc.setText(statDesc);
-            isTVConnected = isConnected;
-        });
+//        mViewModel.getIsSwitcherConnected().observe(getViewLifecycleOwner(), isConnected -> {
+//            setLEDConnectionStatus(switchLedIcon, tvLedSwitchDesc, isConnected);
+//            String statDesc = "Switch is " + (isConnected ? "online" : "offline");
+//            tvLedSwitchDesc.setText(statDesc);
+//            isSwitcherConnected = isConnected;
+//        });
+//
+//        mViewModel.getIsTVConnected().observe(getViewLifecycleOwner(), isConnected -> {
+//            setLEDConnectionStatus(tvLedIcon, tvLedTVDesc, isConnected);
+//            String statDesc = "TV is " + (isConnected ? "online" : "offline");
+//            tvLedTVDesc.setText(statDesc);
+//            isTVConnected = isConnected;
+//        });
     }
 
     private void startWarmup(View layoutWarmup, TextView txtWarmupCountdown) {

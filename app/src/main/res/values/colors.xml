@@ -11,4 +11,6 @@
     <color name="panel_display_backcolor">#233246</color>
     <color name="button_source_color">#233246</color>
     <color name="button_border_source_color">#405367</color>
+    <color name="button_source_selected_color">#1e519e</color>"
+    <color name="button_border_source_selected_color">#3d92e5</color>
 </resources>

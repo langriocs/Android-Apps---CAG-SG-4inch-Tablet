@@ -19,4 +19,5 @@
     <string name="usb_c">USB-C</string>
     <string name="usb_c_source_button">USB-C Source button</string>
     <string name="wireless_share_source_button">Wireless Share Source button</string>
+    <string name="volume_up_icon">Volume Up icon</string>
 </resources>

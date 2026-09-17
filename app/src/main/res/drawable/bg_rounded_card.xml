@@ -4,6 +4,6 @@
     <solid android:color="@color/button_source_color" />
     <corners android:radius="12dp" />
     <stroke
-        android:width="5dp"
+        android:width="3dp"
         android:color="@color/button_border_source_color" />
 </shape>

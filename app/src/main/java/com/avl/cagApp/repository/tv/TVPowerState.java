@@ -1,4 +1,4 @@
-package com.avl.cagApp.model;
+package com.avl.cagApp.repository.tv;
 
 public enum TVPowerState {
     ON,

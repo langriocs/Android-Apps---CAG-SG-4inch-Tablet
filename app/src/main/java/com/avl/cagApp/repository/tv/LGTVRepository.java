@@ -3,7 +3,6 @@ package com.avl.cagApp.repository.tv;
 import android.util.Log;
 
 import com.avl.cagApp.libs.TCPClient;
-import com.avl.cagApp.model.TVPowerState;
 
 import java.util.Locale;
 

@@ -4,7 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.avl.cagApp.model.TVPowerState;
+import com.avl.cagApp.repository.switcher.Switch5x1Output;
+import com.avl.cagApp.repository.tv.TVPowerState;
+import com.avl.cagApp.repository.switcher.ISwitchListener;
+import com.avl.cagApp.repository.switcher.ISwitchRepository;
+import com.avl.cagApp.repository.switcher.Switch5x1Repository;
 import com.avl.cagApp.repository.tv.ITVListener;
 import com.avl.cagApp.repository.tv.ITVRepository;
 import com.avl.cagApp.repository.tv.LGTVRepository;
@@ -14,7 +18,7 @@ public class ControlScreenViewModel extends ViewModel {
     private final MutableLiveData<Boolean> isSystemInitialized = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isSwitcherConnected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isTVConnected = new MutableLiveData<>(false);
-    private final MutableLiveData<TVPowerState> tvState = new MutableLiveData<>(TVPowerState.UNKNOWN);
+    private final MutableLiveData<TVPowerState> tvState = new MutableLiveData<>(TVPowerState.OFF);
     private final MutableLiveData<Boolean> isUsbCSelected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isWirelessSelected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> tvMuted = new MutableLiveData<>(false);
@@ -23,10 +27,14 @@ public class ControlScreenViewModel extends ViewModel {
 
 
     private final ITVRepository tvRepository;
+    private final ISwitchRepository switchRepository;
+
 
     public ControlScreenViewModel () {
         tvRepository = new LGTVRepository();
+        switchRepository = new Switch5x1Repository();
         setupTVListener();
+        setupSwitchListener();
     }
 
     public LiveData<Boolean> getIsSystemInitialized() { return isSystemInitialized; }
@@ -60,19 +68,16 @@ public class ControlScreenViewModel extends ViewModel {
         isWirelessSelected.postValue(selected);
     }
 
-    public LiveData<Boolean> getTvMuted() {
+    public LiveData<Boolean> getTVMuted() {
         return tvMuted;
     }
 
-//    public void setMuted(boolean muted) {
-//        isMuted.postValue(muted);
-//    }
 
-    public LiveData<String> getTvMessage() {
+    public LiveData<String> getTVMessage() {
         return tvMessage;
     }
 
-    public LiveData<Integer> getTvVolume() {
+    public LiveData<Integer> getTVVolume() {
         return tvVolume;
     }
 
@@ -131,12 +136,46 @@ public class ControlScreenViewModel extends ViewModel {
         tvRepository.setVolume(volume);
     }
 
+    // Switch setup
+    private void setupSwitchListener() {
+        switchRepository.setListener(new ISwitchListener() {
+            @Override
+            public void onConnected() {
+                isSwitcherConnected.postValue(true);
+            }
+
+            @Override
+            public void onDisconnected() {
+                isSwitcherConnected.postValue(false);
+            }
+        });
+    }
+
+    public void connectSwitcher(String ip, int port) {
+        switchRepository.connect(ip, port);
+    }
+    public void disconnectSwitcher() {
+        switchRepository.disconnect();
+    }
+    public void routeInputSourceToUSB() {
+        isUsbCSelected.postValue(true);
+        isWirelessSelected.postValue(false);
+        switchRepository.routeInputSourceTo(Switch5x1Output.USB_1);
+    }
+
+    public void routeInputSourceToWireless() {
+        isUsbCSelected.postValue(false);
+        isWirelessSelected.postValue(true);
+        switchRepository.routeInputSourceTo(Switch5x1Output.HDMI_4);
+    }
+
+
     @Override
     protected void onCleared() {
         super.onCleared();
 
         tvRepository.cleanup();
-
+        switchRepository.cleanup();
     }
 
 }

@@ -1,7 +1,5 @@
 package com.avl.cagApp.repository.tv;
 
-import com.avl.cagApp.model.TVPowerState;
-
 public interface ITVListener {
 
     void onConnected();

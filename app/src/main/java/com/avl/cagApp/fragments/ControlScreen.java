@@ -20,7 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.avl.cagApp.R;
-import com.avl.cagApp.model.TVPowerState;
+import com.avl.cagApp.repository.tv.TVPowerState;
 import com.avl.cagApp.viewmodel.ControlScreenViewModel;
 import com.avl.cagApp.viewmodel.ShareViewModel;
 import com.google.android.material.button.MaterialButton;
@@ -68,21 +68,11 @@ public class ControlScreen extends Fragment {
 
 
         btnSourceUsbC.setOnClickListener(v -> {
-//            if (!isSwitcherConnected) {
-//                return;
-//            }
-//            mViewModel.sendToSwitcher("s input source 1");
-//            Boolean current = mViewModel.getIsUsbCSelected().getValue();
-//            mViewModel.setUsbCSelected(current == null || !current);
+            mViewModel.routeInputSourceToUSB();
         });
 
         btnSourceWireless.setOnClickListener(v -> {
-//            if (!isSwitcherConnected) {
-//                return;
-//            }
-////            mViewModel.sendToSwitcher("s input source 4");
-//            Boolean current = mViewModel.getIsWirelessSelected().getValue();
-//            mViewModel.setWirelessSelected(current == null || !current);
+            mViewModel.routeInputSourceToWireless();
         } );
 
         btnPower.setOnClickListener(v -> {
@@ -100,7 +90,7 @@ public class ControlScreen extends Fragment {
         });
 
         btnMute.setOnClickListener(v -> {
-            Boolean current = mViewModel.getTvMuted().getValue();
+            Boolean current = mViewModel.getTVMuted().getValue();
             mViewModel.changeMute(current == null || !current);
         });
 
@@ -132,7 +122,7 @@ public class ControlScreen extends Fragment {
                 if (controlRoomDevices.roomDevices != null) {
                     controlRoomDevices.roomDevices.forEach(roomDevice -> {
                         if (roomDevice.getDeviceName().equals("Switch")) {
-//                            mViewModel.connectSwitcher(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+                            mViewModel.connectSwitcher(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
                         } else if (roomDevice.getDeviceName().equals("TV")) {
                             mViewModel.connectTV(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
                         }
@@ -177,7 +167,7 @@ public class ControlScreen extends Fragment {
             btnSourceWireless.setBackgroundResource(isSelected ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
         });
 
-        mViewModel.getTvMuted().observe(getViewLifecycleOwner(), isMuted -> {
+        mViewModel.getTVMuted().observe(getViewLifecycleOwner(), isMuted -> {
 
             btnMute.setBackgroundResource(isMuted ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
 
@@ -185,7 +175,7 @@ public class ControlScreen extends Fragment {
 
         });
 
-        mViewModel.getTvVolume().observe(getViewLifecycleOwner(), volume -> {
+        mViewModel.getTVVolume().observe(getViewLifecycleOwner(), volume -> {
             if (volume != null) {
                 seekBarVolume.setProgress(volume);
             }

@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:viewportHeight="24"
+    android:viewportWidth="24"
+    android:width="24dp">
+
+    <!-- Core solid filled circle (Red) -->
+    <path
+        android:pathData="M12,12m-8.5,0a8.5,8.5 0 1,1 17,0a8.5,8.5 0 1,1 -17,0"
+        android:fillColor="#EF5350" />
+
+    <!-- External circular border ring (Lighter Red) -->
+    <path
+        android:pathData="M12,12m-9,0a9,9 0 1,1 18,0a9,9 0 1,1 -18,0"
+        android:strokeWidth="1.5"
+        android:strokeColor="#F44336" />
+
+</vector>

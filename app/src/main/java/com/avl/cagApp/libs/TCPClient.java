@@ -11,6 +11,10 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TCPClient implements Runnable {
@@ -30,9 +34,10 @@ public class TCPClient implements Runnable {
     private Socket socket;
     private Thread clientThread;
     private final AtomicBoolean isConnected = new AtomicBoolean(false);
+    private final ExecutorService writeExecutor = Executors.newSingleThreadExecutor();
 
     public interface OnMessageReceived {
-        void messageReceived(String message);
+        void onMessageReceived(String message);
     }
 
     public interface OnConnectionStatusChanged {
@@ -73,34 +78,93 @@ public class TCPClient implements Runnable {
         }
     }
 
+//    public void sendMessage(final String message) {
+//        new Thread(() -> {
+//            if (bufferOut != null && isConnected.get()) {
+//                Log.d(tag, "Sending String: " + message);
+//                bufferOut.println(message);
+//                bufferOut.flush();
+//            } else {
+//                Log.w(tag, "Cannot send message, not connected: " + message);
+//            }
+//        }).start();
+//    }
     public void sendMessage(final String message) {
-        new Thread(() -> {
-            if (bufferOut != null && isConnected.get()) {
-                Log.d(tag, "Sending String: " + message);
-                bufferOut.println(message);
-                bufferOut.flush();
-            } else {
-                Log.w(tag, "Cannot send message, not connected: " + message);
-            }
-        }).start();
+
+        Log.d(tag, "sendMessage() called: [" + message + "]");
+
+        try {
+
+            writeExecutor.execute(()->{
+                Log.d(tag, "Executor running: [" + message + "]");
+
+                PrintWriter writer = bufferOut;
+
+                if (writer != null && isConnected.get()) {
+                    Log.d(tag, "Sending String: " + message);
+                    writer.println(message);
+                    writer.flush();
+                    Log.d(tag, "sendMessage() called: [" + message + "]");
+
+                    if (writer.checkError()) {
+                        Log.e(tag, "PrintWriter reported a write error");
+                    } else {
+                        Log.d(tag, "Write completed successfully");
+                    }
+
+                } else {
+                    Log.w(tag, "Cannot send message, not connected: " + message);
+                }
+            });
+
+        } catch (RejectedExecutionException e) {
+            Log.w(tag, "TCPClient already clean up.");
+        }
+
     }
 
     public void sendHex(final String hexString) {
-        new Thread(() -> {
-            if (outputStream != null && isConnected.get()) {
-                try {
-                    byte[] bytes = hexToBytes(hexString);
-                    Log.d(tag, "Sending Hex: " + hexString);
-                    outputStream.write(bytes);
-                    outputStream.flush();
-                } catch (IOException e) {
-                    Log.e(tag, "Error sending hex", e);
+
+        try {
+            writeExecutor.execute(()->{
+
+                OutputStream out = outputStream;
+
+                if (out != null && isConnected.get()) {
+                    try {
+                        byte[] bytes = hexToBytes(hexString);
+                        Log.d(tag, "Sending Hex: " + hexString);
+                        out.write(bytes);
+                        out.flush();
+                    } catch (IOException e) {
+                        Log.e(tag, "Error sending hex", e);
+                    }
+                } else {
+                    Log.w(tag, "Cannot send hex, not connected: " + hexString);
                 }
-            } else {
-                Log.w(tag, "Cannot send hex, not connected: " + hexString);
-            }
-        }).start();
+            });
+        } catch (RejectedExecutionException e) {
+            Log.w(tag, "TCPClient already clean up.");
+        }
+
     }
+
+//    public void sendHex(final String hexString) {
+//        new Thread(() -> {
+//            if (outputStream != null && isConnected.get()) {
+//                try {
+//                    byte[] bytes = hexToBytes(hexString);
+//                    Log.d(tag, "Sending Hex: " + hexString);
+//                    outputStream.write(bytes);
+//                    outputStream.flush();
+//                } catch (IOException e) {
+//                    Log.e(tag, "Error sending hex", e);
+//                }
+//            } else {
+//                Log.w(tag, "Cannot send hex, not connected: " + hexString);
+//            }
+//        }).start();
+//    }
 
     public static byte[] hexToBytes(String s) {
         s = s.replaceAll("\\s+", ""); // Remove spaces
@@ -164,7 +228,7 @@ public class TCPClient implements Runnable {
                     String message = bufferIn.readLine();
                     if (message != null) {
                         if (messageListener != null) {
-                            messageListener.messageReceived(message);
+                            messageListener.onMessageReceived(message);
                         }
                     } else {
                         Log.d(tag, "Server closed connection (null read).");
@@ -193,7 +257,7 @@ public class TCPClient implements Runnable {
         Log.d(tag, "TCP Client thread finished.");
     }
 
-    private void closeResources() {
+    private synchronized void closeResources() {
         setConnected(false);
         try {
             if (bufferIn != null) bufferIn.close();
@@ -207,5 +271,12 @@ public class TCPClient implements Runnable {
         bufferIn = null;
         bufferOut = null;
         outputStream = null;
+    }
+
+    public void cleanup() {
+        stopClient();
+        writeExecutor.shutdownNow();
+        messageListener = null;
+        connectionListener = null;
     }
 }

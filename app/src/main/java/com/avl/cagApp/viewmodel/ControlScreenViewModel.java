@@ -1,56 +1,32 @@
 package com.avl.cagApp.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.avl.cagApp.libs.TCPClient;
+import com.avl.cagApp.model.TVPowerState;
+import com.avl.cagApp.repository.tv.ITVListener;
+import com.avl.cagApp.repository.tv.ITVRepository;
+import com.avl.cagApp.repository.tv.LGTVRepository;
 
 public class ControlScreenViewModel extends ViewModel {
 
     private final MutableLiveData<Boolean> isSystemInitialized = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isSwitcherConnected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isTVConnected = new MutableLiveData<>(false);
-    private final MutableLiveData<Boolean> isPowerOn = new MutableLiveData<>(false);
+    private final MutableLiveData<TVPowerState> tvState = new MutableLiveData<>(TVPowerState.UNKNOWN);
     private final MutableLiveData<Boolean> isUsbCSelected = new MutableLiveData<>(false);
     private final MutableLiveData<Boolean> isWirelessSelected = new MutableLiveData<>(false);
+    private final MutableLiveData<Boolean> tvMuted = new MutableLiveData<>(false);
+    private final MutableLiveData<String> tvMessage = new MutableLiveData<>("");
+    private final MutableLiveData<Integer> tvVolume = new MutableLiveData<>(50);
 
-    private TCPClient switcherClient;
-    private TCPClient tvClient;
 
-    private TCPClient.OnMessageReceived switcherOnMessageReceivedListener = message -> {
-        if (message == null) {
-            return;
-        }
-
-        Log.d("Switcher Message Received", message);
-    };
-    private TCPClient.OnMessageReceived tvOnMessageReceivedListener = message -> {
-        if (message == null) {
-            return;
-        }
-        Log.d("TV Message Received", message);
-    };
+    private final ITVRepository tvRepository;
 
     public ControlScreenViewModel () {
-        switcherClient = createClient(isSwitcherConnected, switcherOnMessageReceivedListener );
-        tvClient = createClient(isTVConnected, tvOnMessageReceivedListener );
-    }
-
-    private TCPClient createClient(MutableLiveData<Boolean> connectionState, TCPClient.OnMessageReceived onMessageReceived ) {
-        return new TCPClient("cag",  onMessageReceived, new TCPClient.OnConnectionStatusChanged() {
-            @Override
-            public void onConnected() {
-                connectionState.postValue(true);
-            }
-
-            @Override
-            public void onDisconnected() {
-                connectionState.postValue(false);
-            }
-        });
+        tvRepository = new LGTVRepository();
+        setupTVListener();
     }
 
     public LiveData<Boolean> getIsSystemInitialized() { return isSystemInitialized; }
@@ -64,12 +40,8 @@ public class ControlScreenViewModel extends ViewModel {
         return isTVConnected;
     }
 
-    public LiveData<Boolean> getIsPowerOn() {
-        return isPowerOn;
-    }
-
-    public void setPowerOn(boolean powerOn) {
-        isPowerOn.postValue(powerOn);
+    public LiveData<TVPowerState> getTvPowerState() {
+        return tvState;
     }
 
     public LiveData<Boolean> getIsUsbCSelected() {
@@ -88,26 +60,75 @@ public class ControlScreenViewModel extends ViewModel {
         isWirelessSelected.postValue(selected);
     }
 
-    public void connectSwitcher(String ip, int port) {
-        switcherClient.connect(ip, port);
+    public LiveData<Boolean> getTvMuted() {
+        return tvMuted;
     }
+
+//    public void setMuted(boolean muted) {
+//        isMuted.postValue(muted);
+//    }
+
+    public LiveData<String> getTvMessage() {
+        return tvMessage;
+    }
+
+    // TV setup
+    private void setupTVListener() {
+        tvRepository.setListener(new ITVListener() {
+            @Override
+            public void onConnected() {
+                isTVConnected.postValue(true);
+            }
+
+            @Override
+            public void onDisconnected() {
+                isTVConnected.postValue(false);
+            }
+
+            @Override
+            public void onPowerStateChanged(TVPowerState state) {
+                tvState.postValue(state);
+            }
+
+            @Override
+            public void onVolumeChanged(int volume) {
+                tvVolume.postValue(volume);
+            }
+
+            @Override
+            public void onMuteChanged(boolean state) {
+                tvMuted.postValue(state);
+            }
+
+            @Override
+            public void onError(String message) {
+
+            }
+        });
+    }
+
     public void connectTV(String ip, int port) {
-        tvClient.connect(ip, port);
+        tvRepository.connect(ip, port);
     }
 
-     public void sendToSwitcher(String message) {
-        switcherClient.sendMessage(message);
+    public void turnOnTV() {
+        tvRepository.turnOn();
     }
 
-    public void sendToTV(String message) {
-        tvClient.sendMessage(message);
+    public void turnOffTV() {
+        tvRepository.turnOff();
+    }
+
+    public void changeMute(boolean isMute) {
+        tvRepository.setMute(isMute);
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
 
-        switcherClient.stopClient();
-        tvClient.stopClient();
+        tvRepository.cleanup();
+
     }
+
 }

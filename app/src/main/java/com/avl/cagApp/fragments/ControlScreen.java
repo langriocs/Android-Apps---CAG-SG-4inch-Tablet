@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.avl.cagApp.R;
@@ -32,7 +33,7 @@ public class ControlScreen extends Fragment {
     private int volNum = 32;
     boolean isTVConnected = false;
     boolean isSwitcherConnected = false;
-    TVPowerState tvPowerState = TVPowerState.UNKNOWN;
+    TVPowerState powerState = TVPowerState.UNKNOWN;
 
 
     @Override
@@ -63,6 +64,7 @@ public class ControlScreen extends Fragment {
         TextView tvLedTVDesc = view.findViewById(R.id.txtDisplayConnected);
         ImageView imgDisplayIndicator = view.findViewById(R.id.imgStatusIndicator);
         TextView txtDisplayStatus = view.findViewById(R.id.txtDisplayStatus);
+        SeekBar seekBarVolume = view.findViewById(R.id.seekBarVolume);
 
 
         btnSourceUsbC.setOnClickListener(v -> {
@@ -84,16 +86,40 @@ public class ControlScreen extends Fragment {
         } );
 
         btnPower.setOnClickListener(v -> {
-            if (tvPowerState == TVPowerState.ON) {
-                return;
+            if (powerState == TVPowerState.ON) {
+                mViewModel.turnOffTV();
+            }
+            if (powerState == TVPowerState.OFF) {
+                mViewModel.turnOnTV();
             }
 
-            mViewModel.turnOnTV();
+            if (powerState == TVPowerState.UNKNOWN) {
+                mViewModel.turnOnTV();
+            }
+
         });
 
         btnMute.setOnClickListener(v -> {
             Boolean current = mViewModel.getTvMuted().getValue();
             mViewModel.changeMute(current == null || !current);
+        });
+
+        seekBarVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int volume = seekBar.getProgress();
+                mViewModel.changeVolume(volume);
+            }
         });
 
         // Warmup UI components
@@ -117,10 +143,11 @@ public class ControlScreen extends Fragment {
 
         mViewModel.getTvPowerState().observe(getViewLifecycleOwner(), state -> {
 
-            tvPowerState = state;
             if (state == TVPowerState.UNKNOWN) {
                 return;
             }
+
+            powerState = state;
 
             int color = 0xFFFF0000;
             if (state == TVPowerState.ON) {
@@ -153,9 +180,14 @@ public class ControlScreen extends Fragment {
         mViewModel.getTvMuted().observe(getViewLifecycleOwner(), isMuted -> {
 
             btnMute.setBackgroundResource(isMuted ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
-            ImageView muteIcon = btnMute.findViewById(R.id.imgMuteIcon);
-            if (muteIcon != null) {
-                muteIcon.setImageResource(isMuted ? R.drawable.ic_volume_mute : R.drawable.ic_volume_down);
+
+            btnMute.setIconResource(isMuted ? R.drawable.ic_volume_down : R.drawable.ic_volume_mute );
+
+        });
+
+        mViewModel.getTvVolume().observe(getViewLifecycleOwner(), volume -> {
+            if (volume != null) {
+                seekBarVolume.setProgress(volume);
             }
         });
 

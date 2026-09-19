@@ -242,6 +242,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"/>
 
             <SeekBar
+                android:id="@+id/seekBarVolume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:max="100"
@@ -268,26 +269,26 @@
                 android:id="@+id/btnMute"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_card"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
                 android:text="@string/mute"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:background="@drawable/bg_rounded_card"
                 app:backgroundTint="@null"
                 app:icon="@drawable/ic_volume_mute"
-                app:iconSize="48dp"
-                app:iconPadding="0dp"
-                app:iconTint="@null"
                 app:iconGravity="textStart"
-                android:insetTop="0dp"
-                android:insetLeft="0dp"
-                android:insetBottom="0dp"
-                android:insetRight="0dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
+                app:iconPadding="0dp"
+                app:iconSize="48dp"
+                app:iconTint="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Turn Display Off Button -->

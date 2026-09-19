@@ -72,6 +72,10 @@ public class ControlScreenViewModel extends ViewModel {
         return tvMessage;
     }
 
+    public LiveData<Integer> getTvVolume() {
+        return tvVolume;
+    }
+
     // TV setup
     private void setupTVListener() {
         tvRepository.setListener(new ITVListener() {
@@ -121,6 +125,10 @@ public class ControlScreenViewModel extends ViewModel {
 
     public void changeMute(boolean isMute) {
         tvRepository.setMute(isMute);
+    }
+
+    public void changeVolume(int volume) {
+        tvRepository.setVolume(volume);
     }
 
     @Override

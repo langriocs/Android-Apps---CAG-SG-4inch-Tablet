@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -76,16 +77,20 @@ public class ControlScreen extends Fragment {
         } );
 
         btnPower.setOnClickListener(v -> {
-            if (powerState == TVPowerState.ON) {
-                mViewModel.turnOffTV();
-            }
-            if (powerState == TVPowerState.OFF) {
-                mViewModel.turnOnTV();
-            }
+//            if (powerState == TVPowerState.ON) {
+//                mViewModel.turnOffTV();
+//            }
+//            if (powerState == TVPowerState.OFF) {
+//                mViewModel.turnOnTV();
+//            }
+//
+//            if (powerState == TVPowerState.UNKNOWN) {
+//                mViewModel.turnOnTV();
+//            }
 
-            if (powerState == TVPowerState.UNKNOWN) {
-                mViewModel.turnOnTV();
-            }
+            mViewModel.turnOffTV();
+            performShutdown();
+            Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
 
         });
 
@@ -133,30 +138,30 @@ public class ControlScreen extends Fragment {
 
         mViewModel.getTvPowerState().observe(getViewLifecycleOwner(), state -> {
 
-            if (state == TVPowerState.UNKNOWN) {
-                return;
-            }
-
-            powerState = state;
-
-            int color = 0xFFFF0000;
-            if (state == TVPowerState.ON) {
-                color = 0xFF4CAF50;
-                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
-                btnPower.setBackgroundResource(R.drawable.bg_rounded_card_green );
-                btnPower.setText("Turn display off");
-
-                setLEDDisplayStatus(imgDisplayIndicator, txtDisplayStatus, TVPowerState.ON);
-            }
-
-            if (state == TVPowerState.OFF) {
-                color = 0xFFFF0000;
-                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
-                btnPower.setBackgroundResource( R.drawable.bg_rounded_card_red );
-                btnPower.setText("Turn display on");
-
-                setLEDDisplayStatus(imgDisplayIndicator,txtDisplayStatus, TVPowerState.OFF);
-            }
+//            if (state == TVPowerState.UNKNOWN) {
+//                return;
+//            }
+//
+//            powerState = state;
+//
+//            int color = 0xFFFF0000;
+//            if (state == TVPowerState.ON) {
+//                color = 0xFF4CAF50;
+//                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
+//                btnPower.setBackgroundResource(R.drawable.bg_rounded_card_green );
+//                btnPower.setText("Turn display off");
+//
+//                setLEDDisplayStatus(imgDisplayIndicator, txtDisplayStatus, TVPowerState.ON);
+//            }
+//
+//            if (state == TVPowerState.OFF) {
+//                color = 0xFFFF0000;
+//                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
+//                btnPower.setBackgroundResource( R.drawable.bg_rounded_card_red );
+//                btnPower.setText("Turn display on");
+//
+//                setLEDDisplayStatus(imgDisplayIndicator,txtDisplayStatus, TVPowerState.OFF);
+//            }
         });
 
         mViewModel.getIsUsbCSelected().observe(getViewLifecycleOwner(), isSelected -> {

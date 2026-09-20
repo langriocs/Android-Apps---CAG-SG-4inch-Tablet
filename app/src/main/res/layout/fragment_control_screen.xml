@@ -74,7 +74,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"  >
+            android:visibility="gone"  >
 
             <!-- Green Indicator Light -->
             <ImageView

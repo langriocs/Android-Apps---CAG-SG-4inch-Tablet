@@ -29,7 +29,6 @@ public class ControlScreenViewModel extends ViewModel {
     private final ITVRepository tvRepository;
     private final ISwitchRepository switchRepository;
 
-
     public ControlScreenViewModel () {
         tvRepository = new LGTVRepository();
         switchRepository = new Switch5x1Repository();
@@ -71,7 +70,6 @@ public class ControlScreenViewModel extends ViewModel {
     public LiveData<Boolean> getTVMuted() {
         return tvMuted;
     }
-
 
     public LiveData<String> getTVMessage() {
         return tvMessage;

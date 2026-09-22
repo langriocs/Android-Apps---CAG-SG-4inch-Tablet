@@ -22,4 +22,19 @@
     <string name="volume_up_icon">Volume Up icon</string>
     <string name="turn_display_off">Turn display off</string>
     <string name="mute">Mute</string>
+    <string name="usb_c1">USB-C 1</string>
+    <string name="usb_c2">USB-C 2</string>
+    <string name="wireless_share">Wireless Share</string>
+    <string name="hall_2">HALL 2</string>
+    <string name="choose_input">Choose input</string>
+    <string name="master_panel">Master Panel</string>
+    <string name="changi_airport_group">Changi Airport Group</string>
+    <string name="hall_1">HALL 1</string>
+    <string name="cag_ops_room">CAG OPS Room</string>
+    <string name="usb_c3">USB-C 3</string>
+    <string name="wireless_share_1">Wireless Share 1</string>
+    <string name="wireless_share_2">Wireless Share 2</string>
+    <string name="apple">Apple TV</string>
+    <string name="appletv">Apple TV</string>
+    <string name="starhub">starhub</string>
 </resources>

@@ -1,6 +1,4 @@
-package com.avl.cagApp;
-
-import androidx.lifecycle.ViewModelProvider;
+package com.avl.cagApp.fragments;
 
 import android.os.Bundle;
 
@@ -11,6 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.avl.cagApp.R;
+import com.avl.cagApp.viewmodel.MasterPanelViewModel;
 
 public class MasterPanel extends Fragment {
 

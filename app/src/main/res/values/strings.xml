@@ -36,5 +36,6 @@
     <string name="wireless_share_2">Wireless Share 2</string>
     <string name="apple">Apple TV</string>
     <string name="appletv">Apple TV</string>
-    <string name="starhub">starhub</string>
+    <string name="starhub">Starhub</string>
+    <string name="cctv">CCTV</string>
 </resources>

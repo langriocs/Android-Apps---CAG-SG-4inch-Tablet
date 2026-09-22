@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_splashScreen1_to_controlScreen3"
             app:destination="@id/controlScreen3" />
+        <action
+            android:id="@+id/action_splashScreen1_to_masterPanel"
+            app:destination="@id/masterPanel" />
     </fragment>
     <fragment
         android:id="@+id/controlScreen1"
@@ -50,6 +53,15 @@
         tools:layout="@layout/fragment_control_screen3" >
         <action
             android:id="@+id/action_controlScreen3_to_splashScreen1"
+            app:destination="@id/splashScreen1" />
+    </fragment>
+    <fragment
+        android:id="@+id/masterPanel"
+        android:name="com.avl.cagApp.fragments.MasterPanel"
+        android:label="fragment_master_panel"
+        tools:layout="@layout/fragment_master_panel" >
+        <action
+            android:id="@+id/action_masterPanel_to_splashScreen1"
             app:destination="@id/splashScreen1" />
     </fragment>
 </navigation>

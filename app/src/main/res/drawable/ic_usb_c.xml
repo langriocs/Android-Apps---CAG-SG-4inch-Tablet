@@ -1,23 +1,14 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="20dp"
-    android:viewportWidth="960"
-    android:viewportHeight="400">
-
-    <!-- USB-C icon with cropped canvas height to remove vertical whitespace -->
-    <!-- Drawing is centered in a 400-unit high viewport -->
-
-    <!-- Outer rounded pill shell -->
-    <path
-        android:fillColor="@android:color/transparent"
-        android:strokeColor="#FFFFFF"
-        android:strokeWidth="60"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M200,40h560c88,0 160,72 160,160v0c0,88 -72,160 -160,160H200c-88,0 -160,-72 -160,-160v0C40,112 112,40 200,40z" />
-
-    <!-- Inner plug connector core detail -->
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M140,168h680c17.6,0 32,14.4 32,32v0c0,17.6 -14.4,32 -32,32H140c-17.6,0 -32,-14.4 -32,-32v0C108,182.4 122.4,168 140,168z" />
+    android:width="83.61dp"
+    android:height="34.99dp"
+    android:viewportWidth="83.61"
+    android:viewportHeight="34.99">
+  <path
+      android:pathData="M18.21,12.29L65.41,12.29A5.21,5.21 0,0 1,70.62 17.5L70.62,17.5A5.21,5.21 0,0 1,65.41 22.71L18.21,22.71A5.21,5.21 0,0 1,13 17.5L13,17.5A5.21,5.21 0,0 1,18.21 12.29z"
+      android:fillColor="#fff"/>
+  <path
+      android:pathData="M17.49,1.5L66.12,1.5A15.99,15.99 0,0 1,82.11 17.49L82.11,17.5A15.99,15.99 0,0 1,66.12 33.49L17.49,33.49A15.99,15.99 0,0 1,1.5 17.5L1.5,17.49A15.99,15.99 0,0 1,17.49 1.5z"
+      android:strokeWidth="3"
+      android:fillColor="#00000000"
+      android:strokeColor="#fff"/>
 </vector>

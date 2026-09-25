@@ -3,6 +3,8 @@ package com.avl.cagApp.repository.switcher;
 import com.avl.cagApp.libs.TCPClient;
 import com.avl.cagApp.repository.tv.ITVListener;
 
+import java.util.List;
+
 public class Switch5x1Repository implements ISwitchRepository {
 
     private volatile ISwitchListener listener;
@@ -53,6 +55,11 @@ public class Switch5x1Repository implements ISwitchRepository {
     @Override
     public void routeInputSourceTo(Switch5x1Output output) {
         tcpClient.sendMessage("s input source " + output.getValue() + "\r");
+    }
+
+    @Override
+    public void routeAV(Integer selectedInput, List<Integer> selectedOutput) {
+
     }
 
     @Override

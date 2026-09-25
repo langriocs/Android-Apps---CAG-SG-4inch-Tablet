@@ -38,4 +38,11 @@
     <string name="appletv">Apple TV</string>
     <string name="starhub">Starhub</string>
     <string name="cctv">CCTV</string>
+    <string name="choose_output">Choose output</string>
+    <string name="hall_1_led_wall_in_1">Hall 1 LED Wall IN 1</string>
+    <string name="hall_1_led_wall_in_2">Hall 1 LED Wall IN 2</string>
+    <string name="hall_2_led_wall_in_1">Hall 2 LED Wall IN 1</string>
+    <string name="video">VIDEO</string>
+    <string name="control">CONTROL</string>
+    <string name="tv_power">TV Power</string>
 </resources>

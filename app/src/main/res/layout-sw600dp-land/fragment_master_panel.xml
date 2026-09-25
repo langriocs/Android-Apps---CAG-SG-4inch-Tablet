@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/header_backcolor" >
@@ -50,606 +50,114 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Main Content Container -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutBody"
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/lblSelectSource"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/choose_input"
-            android:textColor="#E0E0E0"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/panelHall1"
-            app:layout_constraintTop_toTopOf="parent" />
+        <include
+            android:id="@+id/layout_master_video"
+            layout="@layout/fragment_master_panel_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+        <include
+            android:id="@+id/layout_master_control"
+            layout="@layout/fragment_master_panel_control"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+    </FrameLayout>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottom_navigation"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/panelHall1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_card_panel"
-            android:padding="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/panelHall2"
-            app:layout_constraintTop_toBottomOf="@id/lblSelectSource">
+            android:id="@+id/btn_video"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_rounded_card_selector"
+            android:clickable="true"
+            app:layout_constraintEnd_toStartOf="@+id/btn_control"
+            app:layout_constraintTop_toTopOf="@+id/btn_control">
 
-            <TextView
-                android:id="@+id/txtHall1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hall_1"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+            <ImageView
+                android:id="@+id/imgVideo"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:src="@drawable/ic_display"
+                app:layout_constraintBottom_toTopOf="@+id/txtVideo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_hall1_usb1"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:background="@drawable/bg_rounded_card"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHall1"
-                app:layout_constraintEnd_toStartOf="@+id/btn_hall1_usb2" >
-
-                <ImageView
-                    android:id="@+id/imgUsbC1Hall1"
-                    android:layout_width="128dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_usb_c"
-                    app:layout_constraintBottom_toTopOf="@+id/txtUsbC1Hall1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtUsbC1Hall1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/usb_c1"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgUsbC1Hall1" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@id/btn_hall1_usb2"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_rounded_card"
-                app:layout_constraintEnd_toStartOf="@id/btn_hall1_wireless"
-                app:layout_constraintStart_toEndOf="@id/btn_hall1_usb1"
-                app:layout_constraintTop_toTopOf="@id/btn_hall1_usb1">
-
-                <ImageView
-                    android:id="@+id/imgUsbC2Hall1"
-                    android:layout_width="128dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_usb_c"
-                    app:layout_constraintBottom_toTopOf="@+id/txtUsbC2Hall1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtUsbC2Hall1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:text="@string/usb_c2"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgUsbC2Hall1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@id/btn_hall1_wireless"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:background="@drawable/bg_rounded_card_panel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_hall1_usb2"
-                app:layout_constraintTop_toTopOf="@id/btn_hall1_usb2">
-
-                <ImageView
-                    android:id="@+id/imgWirelessShareHall1"
-                    android:layout_width="90dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_wireless_share"
-                    app:layout_constraintBottom_toTopOf="@+id/txtWirelessHall1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtWirelessHall1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/wireless_share"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgWirelessShareHall1" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/panelHall2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_rounded_card_panel"
-            android:padding="16dp"
-            app:layout_constraintStart_toEndOf="@id/panelHall1"
-            app:layout_constraintTop_toTopOf="@id/panelHall1"
-            app:layout_constraintEnd_toEndOf="parent">
-
             <TextView
-                android:id="@+id/txtHall2"
+                android:id="@+id/txtVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/hall_2"
+                android:layout_marginTop="0dp"
+                android:text="@string/video"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_hall2_usb1"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:background="@drawable/bg_rounded_card"
-                app:layout_constraintEnd_toStartOf="@+id/btn_hall2_usb2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtHall2">
-
-                <ImageView
-                    android:id="@+id/imgUsbC1Hall2"
-                    android:layout_width="128dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_usb_c"
-                    app:layout_constraintBottom_toTopOf="@+id/txtUsbC1Hall2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtUsbC1Hall2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/usb_c1"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgUsbC1Hall2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@id/btn_hall2_usb2"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_rounded_card"
-                app:layout_constraintEnd_toStartOf="@id/btn_hall2_wireless"
-                app:layout_constraintStart_toEndOf="@id/btn_hall2_usb1"
-                app:layout_constraintTop_toTopOf="@id/btn_hall2_usb1">
-
-                <ImageView
-                    android:id="@+id/imgUsbC2Hall2"
-                    android:layout_width="128dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_usb_c"
-                    app:layout_constraintBottom_toTopOf="@+id/txtUsbC2Hall2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtUsbC2Hall2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:text="@string/usb_c2"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgUsbC2Hall2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@id/btn_hall2_wireless"
-                android:layout_width="160dp"
-                android:layout_height="130dp"
-                android:background="@drawable/bg_rounded_card_panel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_hall2_usb2"
-                app:layout_constraintTop_toTopOf="@id/btn_hall2_usb2">
-
-                <ImageView
-                    android:id="@+id/imgWirelessShareHall2"
-                    android:layout_width="90dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_wireless_share"
-                    app:layout_constraintBottom_toTopOf="@+id/txtWirelessHall2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtWirelessHall2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:text="@string/wireless_share"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgWirelessShareHall2" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/panelCAGOPS"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_rounded_card_panel"
-            android:padding="16dp"
-            app:layout_constraintStart_toStartOf="@id/panelHall1"
-            app:layout_constraintEnd_toEndOf="@id/panelHall2"
-            app:layout_constraintTop_toBottomOf="@id/panelHall1">
-
-            <TextView
-                android:id="@+id/txtCAGOpsRoom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cag_ops_room"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-
-            <HorizontalScrollView
-                android:id="@+id/scrollCAGOPS"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scrollbars="none"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtCAGOpsRoom">
+                app:layout_constraintTop_toBottomOf="@id/imgVideo" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_usb1"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/imgUsbC1CAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_usb_c"
-                            app:layout_constraintBottom_toTopOf="@+id/txtUsbC1CAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtUsbC1CAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/usb_c1"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgUsbC1CAGRoom" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_usb2"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_usb1"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_usb1">
-
-                        <ImageView
-                            android:id="@+id/imgUsbC2CAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_usb_c"
-                            app:layout_constraintBottom_toTopOf="@+id/txtUsbC2CAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtUsbC2CAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/usb_c2"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgUsbC2CAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_usb3"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_usb2"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_usb2">
-
-                        <ImageView
-                            android:id="@+id/imgUsbC3CAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_usb_c"
-                            app:layout_constraintBottom_toTopOf="@+id/txtUsbC3CAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtUsbC3CAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/usb_c3"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgUsbC3CAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_wireless1"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_usb3"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_usb3">
-
-                        <ImageView
-                            android:id="@+id/imgWireless1CAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_wireless_share"
-                            app:layout_constraintBottom_toTopOf="@+id/txtWireless1CAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtWireless1CAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/wireless_share_1"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgWireless1CAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_wireless2"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_wireless1"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_wireless1">
-
-                        <ImageView
-                            android:id="@+id/imgWireless2CAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_wireless_share"
-                            app:layout_constraintBottom_toTopOf="@+id/txtWireless2CAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtWireless2CAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/wireless_share_2"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgWireless2CAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_apple_tv"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_wireless2"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_wireless2">
-
-                        <ImageView
-                            android:id="@+id/imgAppleTVCAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_appletv"
-                            app:layout_constraintBottom_toTopOf="@+id/txtAppleTVCAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtAppleTVCAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/appletv"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgAppleTVCAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_starhub"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_apple_tv"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_apple_tv">
-
-                        <ImageView
-                            android:id="@+id/imgStarHubCAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_starhub"
-                            app:layout_constraintBottom_toTopOf="@+id/txtStarHubCAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtStarHubCAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/starhub"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgStarHubCAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/btn_cag_cctv"
-                        android:layout_width="160dp"
-                        android:layout_height="130dp"
-                        android:layout_marginStart="8dp"
-                        android:background="@drawable/bg_rounded_card"
-                        app:layout_constraintStart_toEndOf="@id/btn_cag_starhub"
-                        app:layout_constraintTop_toTopOf="@+id/btn_cag_starhub">
-
-                        <ImageView
-                            android:id="@+id/imgCCTVCAGRoom"
-                            android:layout_width="128dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="8dp"
-                            android:src="@drawable/ic_cctv"
-                            app:layout_constraintBottom_toTopOf="@+id/txtCCTVCAGRoom"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/txtCCTVCAGRoom"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="0dp"
-                            android:text="@string/cctv"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/imgCCTVCAGRoom" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </HorizontalScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btn_control"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:background="@drawable/bg_rounded_card_selector"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="@+id/panelCAGOPS"
+            app:layout_constraintTop_toBottomOf="@+id/panelOutput"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/footer"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imgControl"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1dp"
+                android:src="@drawable/ic_control"
+                app:layout_constraintBottom_toTopOf="@+id/txtControl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtControl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/control"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgControl" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

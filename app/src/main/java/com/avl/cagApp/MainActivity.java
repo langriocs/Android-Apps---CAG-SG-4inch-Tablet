@@ -1,5 +1,6 @@
 package com.avl.cagApp;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
@@ -44,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
         ShareViewModel viewModel = new ViewModelProvider(this).get(ShareViewModel.class);
         viewModel.setIspFourInchPanel(isFourInchPanel());
 
-
+        if (isFourInchPanel()) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        }
 
     }
 

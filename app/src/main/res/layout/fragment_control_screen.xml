@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="140dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:adjustViewBounds="true"
@@ -42,7 +42,7 @@
             android:layout_marginEnd="16dp"
             android:text="Airline Room 2"
             android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -237,6 +237,7 @@
                 android:layout_height="48dp"
                 android:src="@drawable/ic_volume_down"
                 android:contentDescription="Volume Down icon"
+                android:clickable="true"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/volume_controls_panel"
                 app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"/>
@@ -261,6 +262,7 @@
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_volume_up"
                 android:contentDescription="@string/volume_up_icon"
+                android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"
                 app:layout_constraintEnd_toStartOf="@+id/btnMute"
                 app:layout_constraintTop_toTopOf="@+id/volume_controls_panel" />
@@ -297,6 +299,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/turn_display_off"
             android:textColor="#FFFFFF"
             android:textSize="15sp"

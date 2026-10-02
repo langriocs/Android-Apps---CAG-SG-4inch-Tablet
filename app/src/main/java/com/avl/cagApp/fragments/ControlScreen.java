@@ -66,6 +66,8 @@ public class ControlScreen extends Fragment {
         ImageView imgDisplayIndicator = view.findViewById(R.id.imgStatusIndicator);
         TextView txtDisplayStatus = view.findViewById(R.id.txtDisplayStatus);
         SeekBar seekBarVolume = view.findViewById(R.id.seekBarVolume);
+        ImageView imgVolDown = view.findViewById(R.id.imgVolDown);
+        ImageView imgVolUp = view.findViewById(R.id.imgVolUp);
 
 
         btnSourceUsbC.setOnClickListener(v -> {
@@ -77,16 +79,6 @@ public class ControlScreen extends Fragment {
         } );
 
         btnPower.setOnClickListener(v -> {
-//            if (powerState == TVPowerState.ON) {
-//                mViewModel.turnOffTV();
-//            }
-//            if (powerState == TVPowerState.OFF) {
-//                mViewModel.turnOnTV();
-//            }
-//
-//            if (powerState == TVPowerState.UNKNOWN) {
-//                mViewModel.turnOnTV();
-//            }
 
             mViewModel.turnOffTV();
             performShutdown();
@@ -112,8 +104,26 @@ public class ControlScreen extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                int volume = seekBar.getProgress();
-                mViewModel.changeVolume(volume);
+                volNum = seekBar.getProgress();
+                mViewModel.changeVolume(volNum);
+            }
+        });
+
+        imgVolDown.setOnClickListener(v -> {
+            if (volNum > 0) {
+                volNum = seekBarVolume.getProgress();
+                volNum--;
+                seekBarVolume.setProgress(volNum);
+                mViewModel.changeVolume(volNum);
+            }
+        });
+
+        imgVolUp.setOnClickListener(v -> {
+            if (volNum < 100) {
+                volNum = seekBarVolume.getProgress();
+                volNum++;
+                seekBarVolume.setProgress(volNum);
+                mViewModel.changeVolume(volNum);
             }
         });
 

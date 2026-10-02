@@ -88,7 +88,7 @@ public class ControlScreen extends Fragment {
 
         btnMute.setOnClickListener(v -> {
             Boolean current = mViewModel.getTVMuted().getValue();
-            mViewModel.changeMute(current == null || !current);
+            mViewModel.changeMute(current);
         });
 
         seekBarVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -148,30 +148,7 @@ public class ControlScreen extends Fragment {
 
         mViewModel.getTvPowerState().observe(getViewLifecycleOwner(), state -> {
 
-//            if (state == TVPowerState.UNKNOWN) {
-//                return;
-//            }
-//
-//            powerState = state;
-//
-//            int color = 0xFFFF0000;
-//            if (state == TVPowerState.ON) {
-//                color = 0xFF4CAF50;
-//                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
-//                btnPower.setBackgroundResource(R.drawable.bg_rounded_card_green );
-//                btnPower.setText("Turn display off");
-//
-//                setLEDDisplayStatus(imgDisplayIndicator, txtDisplayStatus, TVPowerState.ON);
-//            }
-//
-//            if (state == TVPowerState.OFF) {
-//                color = 0xFFFF0000;
-//                btnPower.setIconTint(android.content.res.ColorStateList.valueOf(color));
-//                btnPower.setBackgroundResource( R.drawable.bg_rounded_card_red );
-//                btnPower.setText("Turn display on");
-//
-//                setLEDDisplayStatus(imgDisplayIndicator,txtDisplayStatus, TVPowerState.OFF);
-//            }
+
         });
 
         mViewModel.getIsUsbCSelected().observe(getViewLifecycleOwner(), isSelected -> {
@@ -183,11 +160,8 @@ public class ControlScreen extends Fragment {
         });
 
         mViewModel.getTVMuted().observe(getViewLifecycleOwner(), isMuted -> {
-
             btnMute.setBackgroundResource(isMuted ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
-
             btnMute.setIconResource(isMuted ? R.drawable.ic_volume_down : R.drawable.ic_volume_mute );
-
         });
 
         mViewModel.getTVVolume().observe(getViewLifecycleOwner(), volume -> {

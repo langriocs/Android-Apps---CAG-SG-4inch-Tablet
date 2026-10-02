@@ -129,7 +129,9 @@ public class ControlScreenViewModel extends ViewModel {
     }
 
     public void changeMute(boolean isMute) {
+        isMute = !isMute;
         ((LGTVRepository) tvRepository).setMute(isMute);
+        tvMuted.postValue(isMute);
     }
 
     public void changeVolume(int volume) {

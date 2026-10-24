@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+    implementation(files("libs/avlibrary-release.aar"))
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)

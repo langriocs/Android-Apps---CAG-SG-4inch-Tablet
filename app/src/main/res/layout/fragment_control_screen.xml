@@ -216,7 +216,8 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="@drawable/bg_rounded_card">
+                android:background="@drawable/bg_rounded_card"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/imgMSIcon"

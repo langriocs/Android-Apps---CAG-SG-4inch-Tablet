@@ -52,8 +52,6 @@ public class ControlScreen extends Fragment {
     private View layoutWarmup;
     private TextView txtWarmupCountdown;
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,15 +170,15 @@ public class ControlScreen extends Fragment {
                 tvRoomName.setText(controlRoomDevices.controlDevice.getRoomName());
                 mViewModel.setSelectedControlDevice(controlRoomDevices.controlDevice);
                 if (controlRoomDevices.roomDevices != null) {
-                    controlRoomDevices.roomDevices.forEach(roomDevice -> {
-                        if (roomDevice.getDeviceName().equals("Switch")) {
-                            mViewModel.connectSwitcher(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
-                        } else if (roomDevice.getDeviceName().equals("TV")) {
-                            mViewModel.connectTV(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
-                        } else if (roomDevice.getDeviceName().equals("DSP")) {
-                            mViewModel.connectDSP(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
-                        }
-                    });
+//                    controlRoomDevices.roomDevices.forEach(roomDevice -> {
+//                        if (roomDevice.getDeviceName().equals("Switch")) {
+//                            mViewModel.connectSwitcher(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+//                        } else if (roomDevice.getDeviceName().equals("TV")) {
+//                            mViewModel.connectTV(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+//                        } else if (roomDevice.getDeviceName().equals("DSP")) {
+//                            mViewModel.connectDSP(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+//                        }
+//                    });
                 }
             }
         });

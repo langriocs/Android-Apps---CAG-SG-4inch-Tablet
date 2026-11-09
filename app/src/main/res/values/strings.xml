@@ -20,7 +20,7 @@
     <string name="usb_c_source_button">USB-C Source button</string>
     <string name="wireless_share_source_button">Wireless Share Source button</string>
     <string name="volume_up_icon">Volume Up icon</string>
-    <string name="turn_display_off">Turn display off</string>
+    <string name="Shutdown">Shutdown</string>
     <string name="mute">Mute</string>
     <string name="usb_c1">USB-C 1</string>
     <string name="usb_c2">USB-C 2</string>

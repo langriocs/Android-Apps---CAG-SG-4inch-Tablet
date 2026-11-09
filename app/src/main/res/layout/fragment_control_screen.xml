@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="Airline Room 2"
+            android:text="CAG Meeting Room"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -178,6 +178,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
@@ -204,6 +205,42 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgWirelessIcon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btnSourceMS"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_rounded_card"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/imgMSIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/ic_ms"
+                    android:contentDescription="USB-C Source button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Microsoft Team"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgMSIcon" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -238,9 +275,10 @@
                 android:src="@drawable/ic_volume_down"
                 android:contentDescription="Volume Down icon"
                 android:clickable="true"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/volume_controls_panel"
-                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <SeekBar
                 android:id="@+id/seekBarVolume"
@@ -250,10 +288,10 @@
                 android:progress="50"
                 android:progressDrawable="@drawable/seekbar_progress"
                 android:thumb="@drawable/seekbar_thumb"
-                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imgVolUp"
                 app:layout_constraintStart_toEndOf="@+id/imgVolDown"
-                app:layout_constraintTop_toTopOf="@id/volume_controls_panel" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imgVolUp"
@@ -263,9 +301,10 @@
                 android:src="@drawable/ic_volume_up"
                 android:contentDescription="@string/volume_up_icon"
                 android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="@id/volume_controls_panel"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnMute"
-                app:layout_constraintTop_toTopOf="@+id/volume_controls_panel" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnMute"
@@ -294,80 +333,54 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Turn Display Off Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnPower"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
-            android:text="@string/turn_display_off"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:background="@drawable/bg_rounded_card_red"
-            app:backgroundTint="@null"
-            app:icon="@drawable/ic_power"
-            app:iconSize="48dp"
-            app:iconPadding="0dp"
-            app:iconTint="@null"
-            app:iconGravity="textStart"
-            android:insetTop="0dp"
-            android:insetLeft="0dp"
-            android:insetBottom="0dp"
-            android:insetRight="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/volume_controls_panel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
 
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/btnPowerDisplay"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:background="@drawable/bg_rounded_card_red"-->
-<!--            android:clickable="true"-->
-<!--            android:focusable="true"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/volume_controls_panel"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent">-->
 
-<!--            <ImageView-->
-<!--                android:id="@+id/imgPowerIcon"-->
-<!--                android:layout_width="22dp"-->
-<!--                android:layout_height="22dp"-->
-<!--                android:src="@drawable/pwr_off"-->
-<!--                android:contentDescription="Turn Display Off power button"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/txtTurnDisplayOff"-->
-<!--                app:layout_constraintHorizontal_chainStyle="packed"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/btnPowerDisplay"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_marginTop="16dp"-->
+        <!--            android:background="@drawable/bg_rounded_card_red"-->
+        <!--            android:clickable="true"-->
+        <!--            android:focusable="true"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/volume_controls_panel"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent">-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/txtTurnDisplayOff"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:text="Turn display off"-->
-<!--                android:textColor="#FFFFFF"-->
-<!--                android:textSize="15sp"-->
-<!--                android:textStyle="bold"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/imgPowerOffIcon"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--            <ImageView-->
+        <!--                android:id="@+id/imgPowerIcon"-->
+        <!--                android:layout_width="22dp"-->
+        <!--                android:layout_height="22dp"-->
+        <!--                android:src="@drawable/pwr_off"-->
+        <!--                android:contentDescription="Turn Display Off power button"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintEnd_toStartOf="@+id/txtTurnDisplayOff"-->
+        <!--                app:layout_constraintHorizontal_chainStyle="packed"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/txtTurnDisplayOff"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="8dp"-->
+        <!--                android:text="Turn display off"-->
+        <!--                android:textColor="#FFFFFF"-->
+        <!--                android:textSize="15sp"-->
+        <!--                android:textStyle="bold"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/imgPowerOffIcon"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Footer bar status row -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/footer"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="120dp"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -380,6 +393,7 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:src="@drawable/ic_led"
+            android:visibility="gone"
             android:contentDescription="System online LED indicator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -393,6 +407,7 @@
             android:text="System online"
             android:textColor="#A0A0A0"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgSystemOnlineLed"
             app:layout_constraintTop_toTopOf="parent" />
@@ -403,6 +418,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
             android:background="#20FFFFFF"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txtSystemOnline"
             app:layout_constraintTop_toTopOf="parent" />
@@ -414,6 +430,7 @@
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/ic_led"
+            android:visibility="gone"
             android:contentDescription="Display connected LED indicator"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/viewFooterDivider"
@@ -427,9 +444,34 @@
             android:text="Display connected"
             android:textColor="#A0A0A0"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgDisplayConnectedLed"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPower"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_rounded_card"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="@string/Shutdown"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            app:backgroundTint="@null"
+            app:icon="@drawable/ic_power"
+            app:iconGravity="textTop"
+            app:iconPadding="0dp"
+            app:iconSize="48dp"
+            app:iconTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Warmup Overlay -->

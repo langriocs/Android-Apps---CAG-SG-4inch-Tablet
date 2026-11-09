@@ -6,14 +6,14 @@
 
     <!-- Red Power Circle Arc - Centered at (12, 12) -->
     <path
-        android:strokeColor="#FF0000"
+        android:strokeColor="#FFFF"
         android:strokeWidth="2.5"
         android:strokeLineCap="round"
         android:pathData="M16.24,7.76 A6,6 0 1,1 7.76,7.76" />
 
     <!-- Red Power Vertical Bar - Shifted lower to be more integrated -->
     <path
-        android:strokeColor="#FF0000"
+        android:strokeColor="#FFFF"
         android:strokeWidth="2.5"
         android:strokeLineCap="round"
         android:pathData="M12,6V12" />

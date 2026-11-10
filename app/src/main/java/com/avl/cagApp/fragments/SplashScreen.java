@@ -60,7 +60,8 @@ public class SplashScreen extends Fragment {
             if (controlRoomDevice != null) {
                 shareViewModel.setSelectedControlDevice(controlRoomDevice.controlDevice);
                 shareViewModel.setSelectedRoomDevices(controlRoomDevice.roomDevices);
-                tvRoomName.setText(controlRoomDevice.controlDevice.getRoomName());
+//                tvRoomName.setText(controlRoomDevice.controlDevice.getRoomName());
+                tvRoomName.setText(shareViewModel.getControlDeviceName());
                 controlDeviceUI = controlRoomDevice.controlDevice.getDeviceUI();
             } else {
                 showAlert("Device IP Address not found! Please contact the admin.");
@@ -68,11 +69,12 @@ public class SplashScreen extends Fragment {
         });
 
 //        final String ipAddress = "192.168.1.10"; // Airline Rm1
-//        final String ipAddress = "192.168.1.20"; // Airline Rm2
-//        final String ipAddress = "192.168.1.131";
-//        final String ipAddress = "192.168.1.50";
-//        final String ipAddress = "192.168.1.30";
-        final String ipAddress = MyLibUtil.getIPAddress(true);
+        final String ipAddress = "192.168.1.20"; // Airline Rm2
+//        final String ipAddress = "192.168.1.70";  // Police OPS Rm
+//        final String ipAddress = "192.168.1.60";  // PMA Holding Rm
+//        final String ipAddress = "192.168.1.80";  // CID OPS Rm
+//        final String ipAddress = MyLibUtil.getIPAddress(true);
+        shareViewModel.setDeviceIPAddress(ipAddress);
         shareViewModel.fetchControlDeviceByIpAddress(ipAddress);
     }
 

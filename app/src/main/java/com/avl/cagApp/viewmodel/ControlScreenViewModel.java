@@ -16,6 +16,9 @@ import com.avl.avlibrary.repository.tv.LGTVRepository;
 import com.avl.avlibrary.repository.tv.TVPowerState;
 import com.avl.cagApp.model.vo.ControlDevice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ControlScreenViewModel extends ViewModel {
 
     private final MutableLiveData<Boolean> isSystemInitialized = new MutableLiveData<>(false);
@@ -28,8 +31,6 @@ public class ControlScreenViewModel extends ViewModel {
     private final MutableLiveData<Boolean> dspMuted = new MutableLiveData<>(false);
     private final MutableLiveData<String> tvMessage = new MutableLiveData<>("");
     private final MutableLiveData<Integer> dspVolume = new MutableLiveData<>(50);
-
-
     private final ITVRepository tvRepository;
     private final ISwitchRepository switchRepository;
 //    private final IDSPRepository dspRepository;
@@ -38,8 +39,24 @@ public class ControlScreenViewModel extends ViewModel {
     private Switch5x1Output selectedSource;
 
     public ControlScreenViewModel () {
-        switchRepository = connectSwitcher("192.168.1.31", 8000);
-        tvRepository = connectTV("192.168.1.32", 9761);
+//        Police OPS Room
+//        switchRepository = connectSwitcher("192.168.1.71", 8000);
+//        tvRepository = connectTV("192.168.1.72", 9761);
+
+//      PMA Holding
+//        switchRepository = connectSwitcher("192.168.1.61", 8000);
+//        tvRepository = connectTV("192.168.1.62", 9761);
+//        CID OPS
+//        switchRepository = connectSwitcher("192.168.1.81", 8000);
+//        tvRepository = connectTV("192.168.1.82", 9761);
+//      AIRLINE Rm 1
+//        switchRepository = connectSwitcher("192.168.1.11", 8000);
+//        tvRepository = connectTV("192.168.1.12", 9761);
+//        AIRLINE Rm 2
+        switchRepository = connectSwitcher("192.168.1.21", 8000);
+        tvRepository = connectTV("192.168.1.22", 9761);
+
+
     }
 
     public LiveData<Boolean> getIsSystemInitialized() { return isSystemInitialized; }
@@ -94,13 +111,13 @@ public class ControlScreenViewModel extends ViewModel {
         switchRepository.setListener(new ISwitchListener() {
 
             @Override
-            public void onConnected() {
+            public void onConnected(String ip) {
                 isSwitcherConnected.postValue(true);
                 Log.d("cagSwitch", "Switcher connected " + ip);
             }
 
             @Override
-            public void onDisconnected() {
+            public void onDisconnected(String ip) {
                 isSwitcherConnected.postValue(false);
                 Log.d("cag", "Switcher disconnected " + ip);
             }
@@ -116,13 +133,13 @@ public class ControlScreenViewModel extends ViewModel {
         ITVRepository tv = new LGTVRepository();
         tv.setListener(new ITVListener() {
             @Override
-            public void onConnected() {
+            public void onConnected(String ip) {
                 Log.d("cagTV", "TV connected " + ip);
                 isTVConnected.postValue(true);
             }
 
             @Override
-            public void onDisconnected() {
+            public void onDisconnected(String ip) {
                 isTVConnected.postValue(false);
             }
 
@@ -170,6 +187,7 @@ public class ControlScreenViewModel extends ViewModel {
     }
 
     public void turnOffTV() {
+        tvRepository.turnOff();
         tvRepository.turnOff();
     }
 
@@ -225,5 +243,7 @@ public class ControlScreenViewModel extends ViewModel {
             selectedSource = Switch5x1Output.USB_1;
         }
     }
+
+
 
 }

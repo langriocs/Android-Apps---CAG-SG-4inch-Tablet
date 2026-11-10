@@ -73,6 +73,7 @@ public class ControlScreen extends Fragment {
         btnPower = view.findViewById(R.id.btnPower);
         btnPower.setOnClickListener(v -> {
             mViewModel.turnOffTV();
+
             performShutdown();
             Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
         });
@@ -167,7 +168,8 @@ public class ControlScreen extends Fragment {
     private void fetchControlDevicesData() {
         mShareModel.getControlRoomDevices().observe(getViewLifecycleOwner(), controlRoomDevices -> {
             if (controlRoomDevices != null) {
-                tvRoomName.setText(controlRoomDevices.controlDevice.getRoomName());
+//                tvRoomName.setText(controlRoomDevices.controlDevice.getRoomName());
+                tvRoomName.setText(mShareModel.getControlDeviceName());
                 mViewModel.setSelectedControlDevice(controlRoomDevices.controlDevice);
                 if (controlRoomDevices.roomDevices != null) {
 //                    controlRoomDevices.roomDevices.forEach(roomDevice -> {
@@ -183,8 +185,6 @@ public class ControlScreen extends Fragment {
             }
         });
     }
-
-
 
     private void observeViewModel() {
         mViewModel.getTvPowerState().observe(getViewLifecycleOwner(), state -> {
@@ -204,10 +204,9 @@ public class ControlScreen extends Fragment {
             btnSourceMS.setBackgroundResource(isSelected ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
         });
 
-
         mViewModel.getDSPMuted().observe(getViewLifecycleOwner(), isMuted -> {
-            btnMute.setBackgroundResource(isMuted ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
-            btnMute.setIconResource(isMuted ? R.drawable.ic_volume_down : R.drawable.ic_volume_mute );
+//            btnMute.setBackgroundResource(isMuted ? R.drawable.bg_rounded_card_selected : R.drawable.bg_rounded_card);
+            btnMute.setIconResource(isMuted ? R.drawable.ic_volume_mute : R.drawable.ic_volume_down );
         });
 
         mViewModel.getDSPVolume().observe(getViewLifecycleOwner(), volume -> {

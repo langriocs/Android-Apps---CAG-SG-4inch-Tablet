@@ -127,8 +127,8 @@
         <LinearLayout
             android:id="@+id/source_select_panel"
             android:layout_width="0dp"
-            android:layout_height="96dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
             android:baselineAligned="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,9 +149,9 @@
 
                 <ImageView
                     android:id="@+id/imgUsbCIcon"
-                    android:layout_width="64dp"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_width="84dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="50dp"
                     android:src="@drawable/ic_usb_c"
                     android:scaleType="fitCenter"
                     android:contentDescription="@string/usb_c_source_button"
@@ -186,9 +186,9 @@
 
                 <ImageView
                     android:id="@+id/imgWirelessIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_width="84dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="50dp"
                     android:src="@drawable/ic_wireless_share"
                     android:contentDescription="@string/wireless_share_source_button"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -250,7 +250,7 @@
             android:id="@+id/lblVolume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Volume"
             android:textColor="#E0E0E0"
             android:textSize="14sp"
@@ -263,7 +263,7 @@
             android:id="@+id/volume_controls_panel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblVolume">
@@ -383,6 +383,7 @@
         android:layout_height="120dp"
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
+        android:paddingBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

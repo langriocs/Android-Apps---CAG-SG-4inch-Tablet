@@ -14,7 +14,9 @@ import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.repository.room.IDeviceRoomRepository;
 import com.avl.cagApp.repository.room.impl.DeviceRoomRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShareViewModel extends AndroidViewModel {
     private final IDeviceRoomRepository deviceRoomRepo;
@@ -23,9 +25,18 @@ public class ShareViewModel extends AndroidViewModel {
     private boolean isFourInchPanel = false;
     private List<RoomDevice> selectedRoomDevices;
     private ControlDevice selectedControlDevice;
+    private final Map<String, String> controlDevices = new HashMap<>();
+    private String ip;
 
     public ShareViewModel(@NonNull Application application) {
         super(application);
+
+        controlDevices.put("192.168.1.10", "Airline Room 1");
+        controlDevices.put("192.168.1.20", "Airline Room 2");
+        controlDevices.put("192.168.1.60", "PMA Holding Room");
+        controlDevices.put("192.168.1.70", "Police Ops Room");
+        controlDevices.put("192.168.1.80", "CID OPS Room");
+
         deviceRoomRepo = new DeviceRoomRepository(application);
         controlRoomDevices = Transformations.switchMap(ipAddressQuery, deviceRoomRepo::fetchControlDeviceWithRoomDevicesByIpAddress);
     }
@@ -57,5 +68,13 @@ public class ShareViewModel extends AndroidViewModel {
     }
     public void setSelectedControlDevice(ControlDevice selectedControlDevice) {
         this.selectedControlDevice = selectedControlDevice;
+    }
+
+    public void setDeviceIPAddress(String ipAddress) {
+        ip = ipAddress;
+    }
+
+    public String getControlDeviceName() {
+        return controlDevices.get(this.ip);
     }
 }
